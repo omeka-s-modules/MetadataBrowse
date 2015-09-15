@@ -49,6 +49,6 @@ class Module extends AbstractModule
     {
         $params = $event->getParams();
         $value = $params['value'];
-        return "$value filtered";
+        $event->setParam('value', "$value filtered");
     }
 }
