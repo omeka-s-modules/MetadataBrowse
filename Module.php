@@ -23,8 +23,8 @@ class Module extends AbstractModule
     {
         $sharedEventManager->attach(
                 'Omeka\Api\Representation\ValueRepresentation',
-                'filterLiteralValue',
-                array($this, 'filterLiteralValue')
+                'filterValue',
+                array($this, 'filterValue')
                 );
     }
     
@@ -40,15 +40,26 @@ class Module extends AbstractModule
         $html .= "<div id='properties'>props</div>";
         $html .= "<div class='sidebar active'>sidebar stuff</div>";
         $html .= $renderer->formElements($form);
-        
         return $html;
     }
-    
-    
-    public function filterLiteralValue($event)
+
+    public function filterValue($event)
     {
+        $target = $event->getTarget();
+        $propertyId = $target->property()->id();
         $params = $event->getParams();
-        $value = $params['value'];
-        $event->setParam('value', "$value filtered");
+        $html = $params['html'];
+        $url = $this->getServiceLocator()->get('ViewHelperManager')->get('Url');
+        $searchUrl = $url('admin/default',
+                          array('controller' => 'item', 'action' => 'browse'),
+                          array('query' => array('Search' => '',
+                                                 "property[$propertyId][eq][]" => $html
+                                           )
+                                )
+                      );
+        $translator = $this->getServiceLocator()->get('MvcTranslator');
+        $text = $translator->translate('See all items with this value');
+        $link = "<a href='$searchUrl'>$text</a>";
+        $event->setParam('html', "$html $link");
     }
 }
