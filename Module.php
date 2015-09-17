@@ -7,11 +7,19 @@ use Zend\ServiceManager\ServiceLocatorInterface;
 use Zend\Mvc\Controller\AbstractController;
 use Zend\View\Renderer\PhpRenderer;
 use Zend\EventManager\SharedEventManagerInterface;
+use Zend\Mvc\MvcEvent;
 use MetadataBrowse\Form\ConfigForm;
 
 class Module extends AbstractModule
 {
-    
+    protected $settings;
+
+    public function onBootstrap(MvcEvent $event)
+    {
+        parent::onBootstrap($event);
+        $this->settings = $this->getServiceLocator()->get('Omeka\Settings');
+        
+    }
     public function getConfig()
     {
         return array();
@@ -32,20 +40,24 @@ class Module extends AbstractModule
     {
         $params = $controller->params()->fromPost();
         $propertyIds = json_encode($params['propertyIds']);
-        $settings = $this->getServiceLocator()->get('Omeka\Settings');
-        $settings->set('metadata_browse_properties', $propertyIds);
+        $this->settings->set('metadata_browse_properties', $propertyIds);
     }
     
     public function getConfigForm(PhpRenderer $renderer)
     {
+        $filteredPropertyIds = $this->settings->get('metadata_browse_properties');
         $escape = $renderer->plugin('escapeHtml');
         $translator = $this->getServiceLocator()->get('MvcTranslator');
         $html = '';
+        $html .= "<script type='text/javascript'>
+        var filteredPropertyIds = $filteredPropertyIds;
+        </script>
+        ";
         $form = new ConfigForm($this->getServiceLocator());
-        $html .= "<div id='properties'><p>" . $escape($translator->translate("Choose properties to be searchable from the sidebar.")) . "</p></div>";
+        $html .= "<div id='properties'><p>" . $escape($translator->translate("Choose properties from the sidebar to be searchable.")) . "</p></div>";
         $html .= '
 <fieldset class="resource-values field template">
-    <input type="hidden" name="propertyIds[]" class="property-ids"></input>
+    <input type="hidden" disabled="disabled" name="propertyIds[]" class="property-ids"></input>
     <div class="field-meta">
         <legend class="field-label"></legend>
         <a href="#" class="expand o-icon-right" aria-label="' . $escape($translator->translate("Expand")) .'"></a>
@@ -60,14 +72,12 @@ class Module extends AbstractModule
         $selectorHtml = $renderer->propertySelector('Select properties to be searchable');
         $html .= "<div class='sidebar active'>$selectorHtml</div>";
         $html .= $renderer->formElements($form);
-        
         return $html;
     }
 
     public function filterValue($event)
     {
-        $settings = $this->getServiceLocator()->get('Omeka\Settings');
-        $filteredPropertyIds = json_decode($settings->get('metadata_browse_properties'), true);
+        $filteredPropertyIds = json_decode($this->settings->get('metadata_browse_properties'), true);
         $target = $event->getTarget();
         $propertyId = $target->property()->id();
         if (in_array($propertyId, $filteredPropertyIds)) {
