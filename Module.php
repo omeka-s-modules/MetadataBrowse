@@ -30,7 +30,10 @@ class Module extends AbstractModule
     
     public function handleConfigForm(AbstractController $controller)
     {
-        
+        $params = $controller->params()->fromPost();
+        $propertyIds = json_encode($params['propertyIds']);
+        $settings = $this->getServiceLocator()->get('Omeka\Settings');
+        $settings->set('metadata_browse_properties', $propertyIds);
     }
     
     public function getConfigForm(PhpRenderer $renderer)
@@ -39,7 +42,7 @@ class Module extends AbstractModule
         $translator = $this->getServiceLocator()->get('MvcTranslator');
         $html = '';
         $form = new ConfigForm($this->getServiceLocator());
-        $html .= "<div id='properties'>props</div>";
+        $html .= "<div id='properties'><p>" . $escape($translator->translate("Choose properties to be searchable from the sidebar.")) . "</p></div>";
         $html .= '
 <fieldset class="resource-values field template">
     <input type="hidden" name="propertyIds[]" class="property-ids"></input>
