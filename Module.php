@@ -66,21 +66,26 @@ class Module extends AbstractModule
 
     public function filterValue($event)
     {
+        $settings = $this->getServiceLocator()->get('Omeka\Settings');
+        $filteredPropertyIds = json_decode($settings->get('metadata_browse_properties'), true);
         $target = $event->getTarget();
         $propertyId = $target->property()->id();
-        $params = $event->getParams();
-        $html = $params['html'];
-        $url = $this->getServiceLocator()->get('ViewHelperManager')->get('Url');
-        $searchUrl = $url('admin/default',
-                          array('controller' => 'item', 'action' => 'browse'),
-                          array('query' => array('Search' => '',
-                                                 "property[$propertyId][eq][]" => $html
-                                           )
-                                )
-                      );
-        $translator = $this->getServiceLocator()->get('MvcTranslator');
-        $text = $translator->translate('See all items with this value');
-        $link = "<a href='$searchUrl'>$text</a>";
-        $event->setParam('html', "$html $link");
+        if (in_array($propertyId, $filteredPropertyIds)) {
+            $params = $event->getParams();
+            $html = $params['html'];
+            $url = $this->getServiceLocator()->get('ViewHelperManager')->get('Url');
+            $searchUrl = $url('admin/default',
+                              array('controller' => 'item', 'action' => 'browse'),
+                              array('query' => array('Search' => '',
+                                                     "property[$propertyId][eq][]" => $html
+                                               )
+                                    )
+                          );
+            $translator = $this->getServiceLocator()->get('MvcTranslator');
+            $text = $translator->translate('See all items with this value');
+            $link = "<a href='$searchUrl'>$text</a>";
+            $event->setParam('html', "$html $link");
+        }
+
     }
 }
