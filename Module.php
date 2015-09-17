@@ -35,11 +35,29 @@ class Module extends AbstractModule
     
     public function getConfigForm(PhpRenderer $renderer)
     {
+        $escape = $renderer->plugin('escapeHtml');
+        $translator = $this->getServiceLocator()->get('MvcTranslator');
         $html = '';
         $form = new ConfigForm($this->getServiceLocator());
         $html .= "<div id='properties'>props</div>";
-        $html .= "<div class='sidebar active'>sidebar stuff</div>";
+        $html .= '
+<fieldset class="resource-values field template">
+    <input type="hidden" name="propertyIds[]" class="property-ids"></input>
+    <div class="field-meta">
+        <legend class="field-label"></legend>
+        <a href="#" class="expand o-icon-right" aria-label="' . $escape($translator->translate("Expand")) .'"></a>
+        <div class="collapsible">
+            <div class="field-description"></div>
+            <div class="field-term" title="' . $escape($translator->translate("Property term for development use")) .'"></div>
+        </div>
+    </div>
+</fieldset>
+        ';
+        $renderer->headScript()->appendFile($renderer->assetUrl('js/metadata-browse.js', 'MetadataBrowse'));
+        $selectorHtml = $renderer->propertySelector('Select properties to be searchable');
+        $html .= "<div class='sidebar active'>$selectorHtml</div>";
         $html .= $renderer->formElements($form);
+        
         return $html;
     }
 
