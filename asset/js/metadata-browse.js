@@ -9,6 +9,30 @@
             copyTemplate(targetLi);
         });
 
+        
+        // Remove property
+        $('a.remove-property').on('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            var propertyToRemove = $(this).parents('.field');
+            propertyToRemove.find('input').prop('disabled', true);
+            propertyToRemove.addClass('delete');
+            propertyToRemove.find('.restore-property').show();
+            $(this).hide();
+        });
+
+        // Restore a removed property
+        $('a.restore-property').on('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            var propertyToRemove = $(this).parents('.field');
+            propertyToRemove.find('.remove-property').show();
+            propertyToRemove.find('span.restore-property').hide();
+            propertyToRemove.find('input').prop('disabled', false);
+            propertyToRemove.removeClass('delete');
+            $(this).hide();
+        });
+        
         filteredPropertyIds.forEach(initProperties);
     });
 
@@ -23,7 +47,7 @@
         var id = targetLi.data('property-id');
         var label = targetLi.data('child-search');
         var description = targetLi.find('p.field-comment').html();
-        var templateClone = $('.template').clone();
+        var templateClone = $('.template').clone(true);
         templateClone.removeClass('template');
         templateClone.find('legend').html(label);
         templateClone.find('div.field-description').html(description);

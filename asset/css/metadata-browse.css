@@ -1,0 +1,17 @@
+.input-header {
+    width: 60%;
+    float: right;
+    background-color: inherit;
+}
+
+.field-meta {
+    width: 100%;
+}
+
+.field {
+    width: 60%;
+}
+
+.restore-property {
+    display: none;
+}
