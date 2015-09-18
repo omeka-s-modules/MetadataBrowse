@@ -3,6 +3,7 @@ namespace MetadataBrowse;
 
 use Omeka\Module\AbstractModule;
 use Omeka\Entity\Job;
+use Omeka\Entity\Value;
 use Zend\ServiceManager\ServiceLocatorInterface;
 use Zend\Mvc\Controller\AbstractController;
 use Zend\View\Renderer\PhpRenderer;
@@ -69,17 +70,31 @@ class Module extends AbstractModule
         $target = $event->getTarget();
         $propertyId = $target->property()->id();
         if (in_array($propertyId, $filteredPropertyIds)) {
+            $url = $this->getServiceLocator()->get('ViewHelperManager')->get('Url');
+            $translator = $this->getServiceLocator()->get('MvcTranslator');
             $params = $event->getParams();
             $html = $params['html'];
-            $url = $this->getServiceLocator()->get('ViewHelperManager')->get('Url');
+            switch ($target->type()) {
+                case Value::TYPE_RESOURCE:
+                    $searchTarget = '';
+                    
+                    break;
+                case Value::TYPE_URI:
+                    
+                    $searchTarget = $params['targetUrl'];
+                    break;
+                case Value::TYPE_LITERAL:
+                default:
+                    $searchTarget = $html;
+
+            }
             $searchUrl = $url('admin/default',
                               array('controller' => 'item', 'action' => 'browse'),
                               array('query' => array('Search' => '',
-                                                     "property[$propertyId][eq][]" => $html
+                                                     "property[$propertyId][eq][]" => $searchTarget
                                                )
                                     )
                           );
-            $translator = $this->getServiceLocator()->get('MvcTranslator');
             $text = $translator->translate('See all items with this value');
             $link = "<a href='$searchUrl'>$text</a>";
             $event->setParam('html', "$html $link");
