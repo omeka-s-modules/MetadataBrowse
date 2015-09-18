@@ -22,8 +22,7 @@ class Module extends AbstractModule
     }
     public function getConfig()
     {
-        return array();
-        //return include __DIR__ . '/config/module.config.php';
+        return include __DIR__ . '/config/module.config.php';
     }
     
     
@@ -54,40 +53,8 @@ class Module extends AbstractModule
         </script>
         ";
         $form = new ConfigForm($this->getServiceLocator());
-        //$html .= $renderer->partial(__DIR__ . '/view/metadata-browse/property-template.phtml');
         $html .= "<div id='properties'><p>" . $escape($translator->translate("Choose properties from the sidebar to be searchable.")) . "</p></div>";
-        $html .= '
-<fieldset class="resource-values field template">
-    <input type="hidden" disabled="disabled" name="propertyIds[]" class="property-ids"></input>
-
-    <div class="field-meta">
-        <div class="input-header">
-            <span class="restore-property">' . $translator->translate("Property to be removed") .'</span>
-            <ul class="actions">
-                <li>
-                    <a href="#" 
-                    class="o-icon-delete remove-property" 
-                    title="' . $translator->translate("Remove property") .'" 
-                    aria-label="' . $escape($translator->translate("Remove property")) .'"></a>
-                </li>
-                <li>
-                    <a href="#" 
-                    class="o-icon-undo restore-property" 
-                    title="' . $escape($translator->translate("Undo remove property")) .'" 
-                    aria-label="' . $translator->translate("Undo remove property") . '"></a>
-                </li>
-            </ul>
-        </div>
-    
-        <legend class="field-label"></legend>
-        <a href="#" class="expand o-icon-right" aria-label="' . $escape($translator->translate("Expand")) .'"></a>
-        <div class="collapsible">
-            <div class="field-description"></div>
-            <div class="field-term" title="' . $escape($translator->translate("Property term for development use")) .'"></div>
-        </div>
-    </div>
-</fieldset>
-        ';
+        $html .= $renderer->partial('metadata-browse/property-template', array('escape' => $escape, 'translator' => $translator));
         $renderer->headScript()->appendFile($renderer->assetUrl('js/metadata-browse.js', 'MetadataBrowse'));
         $renderer->headLink()->appendStylesheet($renderer->assetUrl('css/metadata-browse.css', 'MetadataBrowse'));
         $selectorHtml = $renderer->propertySelector('Select properties to be searchable');
@@ -117,6 +84,5 @@ class Module extends AbstractModule
             $link = "<a href='$searchUrl'>$text</a>";
             $event->setParam('html', "$html $link");
         }
-
     }
 }

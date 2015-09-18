@@ -1,0 +1,30 @@
+<fieldset class="resource-values field template">
+    <input type="hidden" disabled="disabled" name="propertyIds[]" class="property-ids"></input>
+
+    <div class="field-meta">
+        <div class="input-header">
+            <span class="restore-property"><?php echo $translator->translate("Property to be removed"); ?></span>
+            <ul class="actions">
+                <li>
+                    <a href="#" 
+                    class="o-icon-delete remove-property" 
+                    title="<?php echo $escape($translator->translate("Remove property")); ?>" 
+                    aria-label="<?php echo $escape($translator->translate("Remove property")); ?>"></a>
+                </li>
+                <li>
+                    <a href="#" 
+                    class="o-icon-undo restore-property" 
+                    title="<?php echo $escape($translator->translate("Undo remove property")); ?>" 
+                    aria-label="<?php echo $escape($translator->translate("Undo remove property")); ?>"></a>
+                </li>
+            </ul>
+        </div>
+    
+        <legend class="field-label"></legend>
+        <a href="#" class="expand o-icon-right" aria-label="<?php echo $escape($translator->translate("Expand")); ?>"></a>
+        <div class="collapsible">
+            <div class="field-description"></div>
+            <div class="field-term" title="<?php echo $escape($translator->translate("Property term for development use")); ?>"></div>
+        </div>
+    </div>
+</fieldset>
