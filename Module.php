@@ -88,7 +88,14 @@ class Module extends AbstractModule
                     $searchTarget = $html;
 
             }
-            $searchUrl = $url('admin/default',
+            $routeMatch = $this->getServiceLocator()->get('Application')
+                            ->getMvcEvent()->getRouteMatch();
+            if ($routeMatch->getParam('__ADMIN__')) {
+                $route = 'admin/default';
+            } else {
+                $route = 'default';
+            }
+            $searchUrl = $url($route,
                               array('controller' => 'item', 'action' => 'browse'),
                               array('query' => array('Search' => '',
                                                      "property[$propertyId][eq][]" => $searchTarget
