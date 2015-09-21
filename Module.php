@@ -4,6 +4,7 @@ namespace MetadataBrowse;
 use Omeka\Module\AbstractModule;
 use Omeka\Entity\Job;
 use Omeka\Entity\Value;
+use Omeka\Event\Event;
 use Zend\ServiceManager\ServiceLocatorInterface;
 use Zend\Mvc\Controller\AbstractController;
 use Zend\View\Renderer\PhpRenderer;
@@ -31,8 +32,8 @@ class Module extends AbstractModule
     {
         $sharedEventManager->attach(
                 'Omeka\Api\Representation\ValueRepresentation',
-                'filterValue',
-                array($this, 'filterValue')
+                Event::REP_VALUE_HTML,
+                array($this, 'repValueHtml' )
                 );
     }
     
@@ -64,7 +65,7 @@ class Module extends AbstractModule
         return $html;
     }
 
-    public function filterValue($event)
+    public function repValueHtml($event)
     {
         $filteredPropertyIds = json_decode($this->settings->get('metadata_browse_properties'), true);
         $target = $event->getTarget();
