@@ -71,6 +71,7 @@ class Module extends AbstractModule
         $target = $event->getTarget();
         $propertyId = $target->property()->id();
         if (in_array($propertyId, $filteredPropertyIds)) {
+            $controllerName = $target->resource()->getControllerName();
             $url = $this->getServiceLocator()->get('ViewHelperManager')->get('Url');
             $translator = $this->getServiceLocator()->get('MvcTranslator');
             $params = $event->getParams();
@@ -97,7 +98,7 @@ class Module extends AbstractModule
                 $route = 'default';
             }
             $searchUrl = $url($route,
-                              array('controller' => 'item', 'action' => 'browse'),
+                              array('controller' => $controllerName, 'action' => 'browse'),
                               array('query' => array('Search' => '',
                                                      "property[$propertyId][eq][]" => $searchTarget
                                                )
