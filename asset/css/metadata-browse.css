@@ -1,25 +1,28 @@
 .input-header {
-    width: 60%;
-    float: right;
-    background-color: inherit;
+    display: none;
 }
 
-.delete .input-header {
+.field.delete {
     background-color: #fcc;
 }
 
-.field-meta {
-    width: 100%;
+.field.delete .field-meta {
+    display: none;
 }
 
-.field {
-    width: 60%;
+.field-meta {
+    width: calc(100% - 5em);
+}
+
+.field-meta .expand, 
+.field-meta .collapse {
+    margin: 0 0.5em 0;
+}
+
+.collapse + .collapsible {
+    margin-top: .5em;
 }
 
 .restore-property {
     display: none;
-}
-
-span.restore-property {
-    padding: 0.375em 0.46875em;
 }

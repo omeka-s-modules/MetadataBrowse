@@ -47,10 +47,12 @@
         var id = targetLi.data('property-id');
         var label = targetLi.data('child-search');
         var description = targetLi.find('p.field-comment').html();
+        var term = targetLi.data('property-term');
         var templateClone = $('.template').clone(true);
         templateClone.removeClass('template');
-        templateClone.find('legend').html(label);
+        templateClone.find('div.field-label').html(label);
         templateClone.find('div.field-description').html(description);
+        templateClone.find('div.field-term').html(term);
         templateClone.find('input.property-ids').val(id);
         templateClone.find('input.property-ids').prop('disabled', false);
         $('#properties').append(templateClone);
