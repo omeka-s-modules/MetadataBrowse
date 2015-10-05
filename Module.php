@@ -40,7 +40,11 @@ class Module extends AbstractModule
     public function handleConfigForm(AbstractController $controller)
     {
         $params = $controller->params()->fromPost();
-        $propertyIds = json_encode($params['propertyIds']);
+        if (isset($params['propertyIds'])) {
+            $propertyIds = json_encode($params['propertyIds']);
+        } else {
+            $propertyIds = json_encode(array());
+        }
         $this->settings->set('metadata_browse_properties', $propertyIds);
     }
     
