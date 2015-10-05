@@ -22,6 +22,19 @@ class Module extends AbstractModule
         $this->settings = $this->getServiceLocator()->get('Omeka\Settings');
         
     }
+    
+    public function install(ServiceLocatorInterface $serviceLocator)
+    {
+        $this->settings = $serviceLocator->get('Omeka\Settings');
+        $propertyIds = json_encode(array());
+        $this->settings->set('metadata_browse_properties', $propertyIds);
+    }
+    
+    public function uninstall(ServiceLocatorInterface $serviceLocator)
+    {
+        $this->settings->delete('metadata_browse_properties');
+    }
+    
     public function getConfig()
     {
         return include __DIR__ . '/config/module.config.php';
