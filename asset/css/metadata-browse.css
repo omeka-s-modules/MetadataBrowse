@@ -6,12 +6,10 @@
     background-color: #fcc;
 }
 
-.field.delete .field-meta {
-    display: none;
-}
 
 .field-meta {
     width: calc(100% - 5em);
+    display: inline;
 }
 
 .field-meta .expand, 

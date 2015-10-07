@@ -17,7 +17,7 @@ $this->htmlElement('body')->appendAttribute('class', 'sidebar-open');
             aria-label="<?php echo $escape($translator->translate("Undo remove property")); ?>"></a>
         </li>
     </ul>
-    <span class="restore-property"><?php echo $translator->translate("Property to be removed"); ?></span>
+    
     <div class="field-meta">    
         <div class="field-label"></div>
         <a href="#" class="expand o-icon-right" aria-label="<?php echo $escape($translator->translate("Expand")); ?>"></a>
@@ -26,4 +26,5 @@ $this->htmlElement('body')->appendAttribute('class', 'sidebar-open');
             <div class="field-term" title="<?php echo $escape($translator->translate("Property term for development use")); ?>"></div>
         </div>
     </div>
+    <span class="restore-property"><?php echo $translator->translate("Property to be removed"); ?></span>
 </div>
