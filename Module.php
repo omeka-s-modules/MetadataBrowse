@@ -78,6 +78,7 @@ class Module extends AbstractModule
         $html .= $renderer->partial('metadata-browse/property-template', array('escape' => $escape, 'translator' => $translator));
         $renderer->headScript()->appendFile($renderer->assetUrl('js/metadata-browse.js', 'MetadataBrowse'));
         $renderer->headLink()->appendStylesheet($renderer->assetUrl('css/metadata-browse.css', 'MetadataBrowse'));
+        $renderer->htmlElement('body')->appendAttribute('class', 'sidebar-open');
         $selectorHtml = $renderer->propertySelector('Select properties to be searchable');
         $html .= "<div class='sidebar active'>$selectorHtml</div>";
         $html .= $renderer->formElements($form);
