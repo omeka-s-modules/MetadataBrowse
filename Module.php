@@ -32,6 +32,8 @@ class Module extends AbstractModule
     
     public function uninstall(ServiceLocatorInterface $serviceLocator)
     {
+        //possible redundant double-checking that the settings service is available
+        $this->settings = $serviceLocator->get('Omeka\Settings');
         $this->settings->delete('metadata_browse_properties');
     }
     
