@@ -87,6 +87,13 @@ class Module extends AbstractModule
         $filteredPropertyIds = json_decode($this->settings->get('metadata_browse_properties'), true);
         $target = $event->getTarget();
         $propertyId = $target->property()->id();
+        $routeMatch = $this->getServiceLocator()->get('Application')
+                        ->getMvcEvent()->getRouteMatch();
+        if ($routeMatch->getParam('__ADMIN__')) {
+            $route = 'admin/default';
+        } else {
+            $route = 'default';
+        }
         if (in_array($propertyId, $filteredPropertyIds)) {
             $controllerName = $target->resource()->getControllerName();
             $url = $this->getServiceLocator()->get('ViewHelperManager')->get('Url');
@@ -95,32 +102,36 @@ class Module extends AbstractModule
             $html = $params['html'];
             switch ($target->type()) {
                 case Value::TYPE_RESOURCE:
-                    $searchTarget = '';
-                    
+                    $searchTarget = $params['targetId'];
+                    $searchUrl = $url($route,
+                          array('controller' => $controllerName, 'action' => 'browse'),
+                          array('query' => array('Search' => '',
+                                                 "property[$propertyId][res][]" => $searchTarget
+                                           )
+                                )
+                      );
                     break;
                 case Value::TYPE_URI:
-                    
                     $searchTarget = $params['targetUrl'];
+                    $searchUrl = $url($route,
+                          array('controller' => $controllerName, 'action' => 'browse'),
+                          array('query' => array('Search' => '',
+                                                 "property[$propertyId][eq][]" => $searchTarget
+                                           )
+                                )
+                      );
                     break;
                 case Value::TYPE_LITERAL:
                 default:
                     $searchTarget = $html;
-
+                    $searchUrl = $url($route,
+                          array('controller' => $controllerName, 'action' => 'browse'),
+                          array('query' => array('Search' => '',
+                                                 "property[$propertyId][eq][]" => $searchTarget
+                                           )
+                                )
+                      );
             }
-            $routeMatch = $this->getServiceLocator()->get('Application')
-                            ->getMvcEvent()->getRouteMatch();
-            if ($routeMatch->getParam('__ADMIN__')) {
-                $route = 'admin/default';
-            } else {
-                $route = 'default';
-            }
-            $searchUrl = $url($route,
-                              array('controller' => $controllerName, 'action' => 'browse'),
-                              array('query' => array('Search' => '',
-                                                     "property[$propertyId][eq][]" => $searchTarget
-                                               )
-                                    )
-                          );
             $text = $translator->translate('See all items with this value');
             $link = "<a href='$searchUrl'>$text</a>";
             $event->setParam('html', "$html $link");
