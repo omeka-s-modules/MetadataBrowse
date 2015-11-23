@@ -81,7 +81,7 @@ class Module extends AbstractModule
         $renderer->htmlElement('body')->appendAttribute('class', 'sidebar-open');
         $selectorHtml = $renderer->propertySelector('Select properties to be searchable');
         $html .= "<div class='sidebar active'>$selectorHtml</div>";
-        $html .= $renderer->formElements($form);
+        $html .= $renderer->formCollection($form, false);
         return $html;
     }
 
