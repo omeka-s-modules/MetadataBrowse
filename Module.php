@@ -6,11 +6,11 @@ use Omeka\Entity\Job;
 use Omeka\Entity\Value;
 use Omeka\Event\Event;
 use Zend\ServiceManager\ServiceLocatorInterface;
+use Zend\Form\Form;
 use Zend\Mvc\Controller\AbstractController;
 use Zend\View\Renderer\PhpRenderer;
 use Zend\EventManager\SharedEventManagerInterface;
 use Zend\Mvc\MvcEvent;
-use MetadataBrowse\Form\ConfigForm;
 
 class Module extends AbstractModule
 {
@@ -73,7 +73,8 @@ class Module extends AbstractModule
         var filteredPropertyIds = $filteredPropertyIds;
         </script>
         ";
-        $form = new ConfigForm($this->getServiceLocator());
+        $formElementManager = $this->getServiceLocator()->get('formElementManager');
+        $form = $formElementManager->get(Form::class, array());
         $html .= "<div id='properties'><p>" . $escape($translator->translate("Choose properties from the sidebar to be searchable.")) . "</p></div>";
         $html .= $renderer->partial('metadata-browse/property-template', array('escape' => $escape, 'translator' => $translator));
         $renderer->headScript()->appendFile($renderer->assetUrl('js/metadata-browse.js', 'MetadataBrowse'));
