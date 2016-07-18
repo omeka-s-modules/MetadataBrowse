@@ -1,11 +1,11 @@
 <?php
 namespace MetadataBrowse\Form;
 
-use Omeka\Form\AbstractForm;
+use Zend\Form\Form;
 
-class ConfigForm extends AbstractForm
+class ConfigForm extends Form
 {
-    public function buildForm()
+    public function initialize()
     {
         
     }
