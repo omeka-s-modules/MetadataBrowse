@@ -105,7 +105,7 @@ class Module extends AbstractModule
             $params = $event->getParams();
             $html = $params['html'];
             switch ($target->type()) {
-                case Value::TYPE_RESOURCE:
+                case 'resource':
                     $searchTarget = $params['targetId'];
                     $searchUrl = $url($route,
                           array('controller' => $controllerName, 'action' => 'browse'),
@@ -115,7 +115,7 @@ class Module extends AbstractModule
                                 )
                       );
                     break;
-                case Value::TYPE_URI:
+                case 'uri':
                     $searchTarget = $params['targetUrl'];
                     $searchUrl = $url($route,
                           array('controller' => $controllerName, 'action' => 'browse'),
@@ -125,7 +125,7 @@ class Module extends AbstractModule
                                 )
                       );
                     break;
-                case Value::TYPE_LITERAL:
+                case 'literal':
                 default:
                     $searchTarget = $html;
                     $searchUrl = $url($route,
