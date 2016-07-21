@@ -106,7 +106,7 @@ class Module extends AbstractModule
             $html = $params['html'];
             switch ($target->type()) {
                 case 'resource':
-                    $searchTarget = $params['targetId'];
+                    $searchTarget = $target->valueResource()->id();
                     $searchUrl = $url($route,
                           array('controller' => $controllerName, 'action' => 'browse'),
                           array('query' => array('Search' => '',
