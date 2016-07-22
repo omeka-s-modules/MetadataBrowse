@@ -116,7 +116,7 @@ class Module extends AbstractModule
                       );
                     break;
                 case 'uri':
-                    $searchTarget = $params['targetUrl'];
+                    $searchTarget = $target->uri();
                     $searchUrl = $url($route,
                           array('controller' => $controllerName, 'action' => 'browse'),
                           array('query' => array('Search' => '',
