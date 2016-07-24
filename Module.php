@@ -104,37 +104,20 @@ class Module extends AbstractModule
             $translator = $this->getServiceLocator()->get('MvcTranslator');
             $params = $event->getParams();
             $html = $params['html'];
-            switch ($target->type()) {
-                case 'resource':
-                    $searchTarget = $target->valueResource()->id();
-                    $searchUrl = $url($route,
-                          array('controller' => $controllerName, 'action' => 'browse'),
-                          array('query' => array('Search' => '',
-                                                 "property[$propertyId][res][]" => $searchTarget
-                                           )
-                                )
-                      );
-                    break;
-                case 'uri':
-                    $searchTarget = $target->uri();
-                    $searchUrl = $url($route,
-                          array('controller' => $controllerName, 'action' => 'browse'),
-                          array('query' => array('Search' => '',
-                                                 "property[$propertyId][eq][]" => $searchTarget
-                                           )
-                                )
-                      );
-                    break;
-                case 'literal':
-                default:
-                    $searchTarget = $html;
-                    $searchUrl = $url($route,
-                          array('controller' => $controllerName, 'action' => 'browse'),
-                          array('query' => array('Search' => '',
-                                                 "property[$propertyId][eq][]" => $searchTarget
-                                           )
-                                )
-                      );
+            $type = $target->type();
+            $config = $this->getServiceLocator()->get('Config');
+            $searchUrlTypes = $config['metadata_browse_search_url_types'];
+            if (array_key_exists($type, $searchUrlTypes)) {
+                $searchUrlClass = new $searchUrlTypes[$type];
+                $searchUrl = $searchUrlClass->searchUrl($controllerName, $propertyId, $url, $route, $target, $html);
+            } else {
+                $searchUrl = $url($route,
+                      array('controller' => $controllerName, 'action' => 'browse'),
+                      array('query' => array('Search' => '',
+                                             "property[$propertyId][eq][]" => $searchTarget
+                                       )
+                            )
+                );
             }
             $text = $translator->translate('See all items with this value');
             $link = "<a href='$searchUrl'>$text</a>";
