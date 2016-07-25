@@ -38,3 +38,7 @@ a.metadata-browse-link {
 .uri.value a.metadata-browse-link:after {
     content: "";
 }
+
+.value.items a.metadata-browse-link:after {
+    content: "";
+}

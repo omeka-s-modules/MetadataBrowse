@@ -50,6 +50,15 @@ class Module extends AbstractModule
                 Event::REP_VALUE_HTML,
                 array($this, 'repValueHtml' )
                 );
+        
+        $sharedEventManager->attach(
+                array(
+                'Omeka\Controller\Admin\Item',
+                'Omeka\Controller\Admin\ItemSet',
+                ),
+                Event::VIEW_SHOW_AFTER,
+                array($this, 'addCSS')
+                );
     }
 
     public function handleConfigForm(AbstractController $controller)
@@ -84,6 +93,12 @@ class Module extends AbstractModule
         $html .= "<div class='sidebar active'>$selectorHtml</div>";
         $html .= $renderer->formCollection($form, false);
         return $html;
+    }
+    
+    public function addCSS($event)
+    {
+        $view = $event->getTarget();
+        $view->headLink()->appendStylesheet($view->assetUrl('css/metadata-browse.css', 'MetadataBrowse'));
     }
 
     public function repValueHtml($event)
