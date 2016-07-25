@@ -163,7 +163,7 @@ class Module extends AbstractModule
                 break;
             }
             $text = $translator->translate(sprintf("See all %s with this value", $controllerLabel));
-            $link = "<a href='$searchUrl'>$text</a>";
+            $link = "<a class='metadata-browse-link' href='$searchUrl'>$text</a>";
             $event->setParam('html', "$html $link");
         }
     }
