@@ -1,9 +1,11 @@
 <?php
 namespace MetadataBrowse\SearchUrl;
 
-class Resource
+use MetadataBrowse\SearchUrl\SearchUrlInterface;
+
+class Resource implements SearchUrlInterface
 {
-    public function searchUrl($controllerName, $propertyId, $url, $route, $target)
+    public function searchUrl($controllerName, $propertyId, $url, $route, $target, $html)
     {
         $searchTarget = $target->valueResource()->id();
         $searchUrl = $url($route,

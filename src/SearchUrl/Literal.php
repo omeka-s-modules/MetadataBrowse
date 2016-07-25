@@ -1,7 +1,9 @@
 <?php
 namespace MetadataBrowse\SearchUrl;
 
-class Literal
+use MetadataBrowse\SearchUrl\SearchUrlInterface;
+
+class Literal implements SearchUrlInterface
 {
     public function searchUrl($controllerName, $propertyId, $url, $route, $target, $html)
     {
