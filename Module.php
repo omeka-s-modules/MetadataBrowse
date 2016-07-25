@@ -136,7 +136,18 @@ class Module extends AbstractModule
                                 )
                       );
             }
-            $text = $translator->translate('See all items with this value');
+            switch ($controllerName) {
+                case 'item':
+                    $controllerLabel = 'items';
+                break;
+                case 'item-set':
+                    $controllerLabel = 'item sets';
+                break;
+                default:
+                    $controllerLabel = $controllerName;
+                break;
+            }
+            $text = $translator->translate(sprintf("See all %s with this value", $controllerLabel));
             $link = "<a href='$searchUrl'>$text</a>";
             $event->setParam('html', "$html $link");
         }
