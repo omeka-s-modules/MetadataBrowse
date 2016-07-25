@@ -20,29 +20,29 @@ class Module extends AbstractModule
     {
         parent::onBootstrap($event);
         $this->settings = $this->getServiceLocator()->get('Omeka\Settings');
-        
+
     }
-    
+
     public function install(ServiceLocatorInterface $serviceLocator)
     {
         $this->settings = $serviceLocator->get('Omeka\Settings');
         $propertyIds = json_encode(array());
         $this->settings->set('metadata_browse_properties', $propertyIds);
     }
-    
+
     public function uninstall(ServiceLocatorInterface $serviceLocator)
     {
         //possible redundant double-checking that the settings service is available
         $this->settings = $serviceLocator->get('Omeka\Settings');
         $this->settings->delete('metadata_browse_properties');
     }
-    
+
     public function getConfig()
     {
         return include __DIR__ . '/config/module.config.php';
     }
-    
-    
+
+
     public function attachListeners(SharedEventManagerInterface $sharedEventManager)
     {
         $sharedEventManager->attach(
@@ -51,7 +51,7 @@ class Module extends AbstractModule
                 array($this, 'repValueHtml' )
                 );
     }
-    
+
     public function handleConfigForm(AbstractController $controller)
     {
         $params = $controller->params()->fromPost();
@@ -62,7 +62,7 @@ class Module extends AbstractModule
         }
         $this->settings->set('metadata_browse_properties', $propertyIds);
     }
-    
+
     public function getConfigForm(PhpRenderer $renderer)
     {
         $filteredPropertyIds = $this->settings->get('metadata_browse_properties');
@@ -137,7 +137,7 @@ class Module extends AbstractModule
                       );
             }
             $text = $translator->translate('See all items with this value');
-            $link = "<a href='$searchUrl'>$text</a>";
+            $link = "<a href='$searchUrl' class='metadata-browse-link'>$text</a>";
             $event->setParam('html', "$html $link");
         }
     }

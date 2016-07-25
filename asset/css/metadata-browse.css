@@ -12,7 +12,7 @@
     display: inline;
 }
 
-.field-meta .expand, 
+.field-meta .expand,
 .field-meta .collapse {
     margin: 0 0.5em 0;
 }
@@ -23,4 +23,18 @@
 
 .restore-property {
     display: none;
+}
+
+.metadata-browse {
+    font-size: 75%;
+    display: block;
+}
+
+a.metadata-browse-link {
+    font-size: 75%;
+    display: block;
+}
+
+.uri.value a.metadata-browse-link:after {
+    content: "";
 }
