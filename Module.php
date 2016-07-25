@@ -20,29 +20,29 @@ class Module extends AbstractModule
     {
         parent::onBootstrap($event);
         $this->settings = $this->getServiceLocator()->get('Omeka\Settings');
-        
+
     }
-    
+
     public function install(ServiceLocatorInterface $serviceLocator)
     {
         $this->settings = $serviceLocator->get('Omeka\Settings');
         $propertyIds = json_encode(array());
         $this->settings->set('metadata_browse_properties', $propertyIds);
     }
-    
+
     public function uninstall(ServiceLocatorInterface $serviceLocator)
     {
         //possible redundant double-checking that the settings service is available
         $this->settings = $serviceLocator->get('Omeka\Settings');
         $this->settings->delete('metadata_browse_properties');
     }
-    
+
     public function getConfig()
     {
         return include __DIR__ . '/config/module.config.php';
     }
-    
-    
+
+
     public function attachListeners(SharedEventManagerInterface $sharedEventManager)
     {
         $sharedEventManager->attach(
@@ -50,8 +50,17 @@ class Module extends AbstractModule
                 Event::REP_VALUE_HTML,
                 array($this, 'repValueHtml' )
                 );
+        
+        $sharedEventManager->attach(
+                array(
+                'Omeka\Controller\Admin\Item',
+                'Omeka\Controller\Admin\ItemSet',
+                ),
+                Event::VIEW_SHOW_AFTER,
+                array($this, 'addCSS')
+                );
     }
-    
+
     public function handleConfigForm(AbstractController $controller)
     {
         $params = $controller->params()->fromPost();
@@ -62,7 +71,7 @@ class Module extends AbstractModule
         }
         $this->settings->set('metadata_browse_properties', $propertyIds);
     }
-    
+
     public function getConfigForm(PhpRenderer $renderer)
     {
         $filteredPropertyIds = $this->settings->get('metadata_browse_properties');
@@ -84,6 +93,12 @@ class Module extends AbstractModule
         $html .= "<div class='sidebar active'>$selectorHtml</div>";
         $html .= $renderer->formCollection($form, false);
         return $html;
+    }
+    
+    public function addCSS($event)
+    {
+        $view = $event->getTarget();
+        $view->headLink()->appendStylesheet($view->assetUrl('css/metadata-browse.css', 'MetadataBrowse'));
     }
 
     public function repValueHtml($event)
@@ -119,8 +134,19 @@ class Module extends AbstractModule
                             )
                 );
             }
-            $text = $translator->translate('See all items with this value');
-            $link = "<a href='$searchUrl'>$text</a>";
+            switch ($controllerName) {
+                case 'item':
+                    $controllerLabel = 'items';
+                break;
+                case 'item-set':
+                    $controllerLabel = 'item sets';
+                break;
+                default:
+                    $controllerLabel = $controllerName;
+                break;
+            }
+            $text = $translator->translate(sprintf("See all %s with this value", $controllerLabel));
+            $link = "<a class='metadata-browse-link' href='$searchUrl'>$text</a>";
             $event->setParam('html', "$html $link");
         }
     }
