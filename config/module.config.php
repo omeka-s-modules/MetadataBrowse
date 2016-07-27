@@ -5,6 +5,11 @@ return [
             OMEKA_PATH . '/modules/MetadataBrowse/view',
         ],
     ],
+    'controllers' => [
+        'invokables' => [
+            'MetadataBrowse\Controller\Admin\Index' => 'MetadataBrowse\Controller\Admin\IndexController'
+        ],
+    ],
     'navigation' => [
         'site' => [
             [
@@ -32,9 +37,9 @@ return [
                                     'metadata-browse' => [
                                         'type' => 'Literal',
                                         'options' => [
-                                            'route' => '/metadata- browse',
+                                            'route' => '/metadata-browse',
                                             'defaults' => [
-                                                '__NAMESPACE__' => 'MetadataBrowse\Controller',
+                                                '__NAMESPACE__' => 'MetadataBrowse\Controller\Admin',
                                                 'controller' => 'index',
                                                 'action' => 'index',
                                             ],
