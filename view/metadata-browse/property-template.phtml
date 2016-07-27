@@ -7,24 +7,24 @@ $this->htmlElement('body')->appendAttribute('class', 'sidebar-open');
         <li>
             <a href="#" 
             class="o-icon-delete remove-property" 
-            title="<?php echo $escape($translator->translate("Remove property")); ?>" 
-            aria-label="<?php echo $escape($translator->translate("Remove property")); ?>"></a>
+            title="<?php echo $this->translate("Remove property"); ?>" 
+            aria-label="<?php echo $this->translate("Remove property"); ?>"></a>
         </li>
         <li>
             <a href="#" 
             class="o-icon-undo restore-property" 
-            title="<?php echo $escape($translator->translate("Undo remove property")); ?>" 
-            aria-label="<?php echo $escape($translator->translate("Undo remove property")); ?>"></a>
+            title="<?php echo $this->translate("Undo remove property"); ?>" 
+            aria-label="<?php echo $this->translate("Undo remove property"); ?>"></a>
         </li>
     </ul>
     
     <div class="field-meta">    
         <div class="field-label"></div>
-        <a href="#" class="expand" aria-label="<?php echo $escape($translator->translate("Expand")); ?>"></a>
+        <a href="#" class="expand" aria-label="<?php echo $this->translate("Expand"); ?>"></a>
         <div class="collapsible">
             <div class="field-description"></div>
-            <div class="field-term" title="<?php echo $escape($translator->translate("Property term for development use")); ?>"></div>
+            <div class="field-term" title="<?php echo $this->translate("Property term for development use"); ?>"></div>
         </div>
     </div>
-    <span class="restore-property"><?php echo $translator->translate("Property to be removed"); ?></span>
+    <span class="restore-property"><?php echo $this->translate("Property to be removed"); ?></span>
 </div>
