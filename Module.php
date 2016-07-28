@@ -49,6 +49,17 @@ class Module extends AbstractModule
                 Event::VIEW_SHOW_AFTER,
                 array($this, 'addCSS')
                 );
+        
+        $sharedEventManager->attach(
+                array(
+                'Omeka\Controller\Admin\Item',
+                'Omeka\Controller\Admin\ItemSet',
+                'Omeka\Controller\Site\Item',
+                'Omeka\Controller\Site\ItemSet',
+                ),
+                Event::VIEW_BROWSE_AFTER,
+                array($this, 'addCSS')
+                );
     }
 
     public function handleConfigForm(AbstractController $controller)
@@ -78,8 +89,6 @@ class Module extends AbstractModule
         $routeMatch = $this->getServiceLocator()->get('Application')
                         ->getMvcEvent()->getRouteMatch();
         $routeMatchParams = $routeMatch->getParams();
-        //print_r($routeMatch->getParams());
-        //die();
         //setup the route params to pass to the Url helper. Both the route name and its parameters go here
         $routeParams = [
                 'action' => 'browse',
