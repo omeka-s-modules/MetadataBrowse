@@ -15,18 +15,14 @@ use Zend\Mvc\MvcEvent;
 class Module extends AbstractModule
 {
 
-    public function install(ServiceLocatorInterface $serviceLocator)
+    public function upgrade($oldVersion, $newVersion,
+        ServiceLocatorInterface $serviceLocator
+    )
     {
-      //  $this->settings = $serviceLocator->get('Omeka\Settings');
-      //  $propertyIds = json_encode(array());
-       // $this->settings->set('metadata_browse_properties', $propertyIds);
-    }
-
-    public function uninstall(ServiceLocatorInterface $serviceLocator)
-    {
-        //possible redundant double-checking that the settings service is available
-        $this->settings = $serviceLocator->get('Omeka\Settings');
-        $this->settings->delete('metadata_browse_properties');
+        if (version_compare($newVersion, '0.1.1-alpha', '>')) {
+            $settings = $serviceLocator->get('Omeka\Settings');
+            $settings->delete('metadata_browse_properties');
+        }
     }
 
     public function getConfig()
