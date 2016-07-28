@@ -27,7 +27,7 @@
 
 a.metadata-browse-link {
     font-size: 75%;
-    display: block;
+    display: block !important;
 }
 
 .uri.value a.metadata-browse-link:after {

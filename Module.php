@@ -43,6 +43,8 @@ class Module extends AbstractModule
                 array(
                 'Omeka\Controller\Admin\Item',
                 'Omeka\Controller\Admin\ItemSet',
+                'Omeka\Controller\Site\Item',
+                'Omeka\Controller\Site\ItemSet',
                 ),
                 Event::VIEW_SHOW_AFTER,
                 array($this, 'addCSS')
@@ -76,24 +78,25 @@ class Module extends AbstractModule
         $routeMatch = $this->getServiceLocator()->get('Application')
                         ->getMvcEvent()->getRouteMatch();
         $routeMatchParams = $routeMatch->getParams();
-        
+        //print_r($routeMatch->getParams());
+        //die();
         //setup the route params to pass to the Url helper. Both the route name and its parameters go here
         $routeParams = [
                 'action' => 'browse',
-                'controller' => $routeMatch->getParam('__CONTROLLER__'),
         ];
         if ($routeMatch->getParam('__ADMIN__')) {
             $routeParams['route'] = 'admin/default';
         } else {
             $siteSlug = $routeMatch->getParam('site-slug');
             $routeParams['route'] = 'site';
-            $routeParams['site-slug'] = $siteSlug . '/' . $routeMatch->getParam('__CONTROLLER__');
+            $routeParams['site-slug'] = $siteSlug . '/' . $target->resource()->getControllerName();
         }
         
         $url = $this->getServiceLocator()->get('ViewHelperManager')->get('Url');
         if (in_array($propertyId, $filteredPropertyIds)) {
             $controllerName = $target->resource()->getControllerName();
             $routeParams['controller'] = $controllerName;
+            
             $translator = $this->getServiceLocator()->get('MvcTranslator');
             $params = $event->getParams();
             $html = $params['html'];
