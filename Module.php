@@ -60,30 +60,6 @@ class Module extends AbstractModule
         $this->settings->set('metadata_browse_properties', $propertyIds);
     }
 
-    public function getConfigForm(PhpRenderer $renderer)
-    {
-        
-       // $filteredPropertyIds = $this->settings->get('metadata_browse_properties');
-        $escape = $renderer->plugin('escapeHtml');
-        $translator = $this->getServiceLocator()->get('MvcTranslator');
-        $html = '';
-        $html .= "<script type='text/javascript'>
-        var filteredPropertyIds = $filteredPropertyIds;
-        </script>
-        ";
-        $formElementManager = $this->getServiceLocator()->get('formElementManager');
-        $form = $formElementManager->get(Form::class, array());
-        $html .= "<div id='properties'><p>" . $escape($translator->translate("Choose properties from the sidebar to be searchable.")) . "</p></div>";
-        $html .= $renderer->partial('metadata-browse/property-template', array('escape' => $escape, 'translator' => $translator));
-        $renderer->headScript()->appendFile($renderer->assetUrl('js/metadata-browse.js', 'MetadataBrowse'));
-        $renderer->headLink()->appendStylesheet($renderer->assetUrl('css/metadata-browse.css', 'MetadataBrowse'));
-        $renderer->htmlElement('body')->appendAttribute('class', 'sidebar-open');
-        $selectorHtml = $renderer->propertySelector('Select properties to be searchable');
-        $html .= "<div class='sidebar active'>$selectorHtml</div>";
-        $html .= $renderer->formCollection($form, false);
-        return $html;
-    }
-    
     public function addCSS($event)
     {
         $view = $event->getTarget();
