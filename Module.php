@@ -14,19 +14,12 @@ use Zend\Mvc\MvcEvent;
 
 class Module extends AbstractModule
 {
-    protected $settings;
-
-    public function onBootstrap(MvcEvent $event)
-    {
-        parent::onBootstrap($event);
-        $this->settings = $this->getServiceLocator()->get('Omeka\Settings');
-    }
 
     public function install(ServiceLocatorInterface $serviceLocator)
     {
-        $this->settings = $serviceLocator->get('Omeka\Settings');
-        $propertyIds = json_encode(array());
-        $this->settings->set('metadata_browse_properties', $propertyIds);
+      //  $this->settings = $serviceLocator->get('Omeka\Settings');
+      //  $propertyIds = json_encode(array());
+       // $this->settings->set('metadata_browse_properties', $propertyIds);
     }
 
     public function uninstall(ServiceLocatorInterface $serviceLocator)
@@ -73,7 +66,8 @@ class Module extends AbstractModule
 
     public function getConfigForm(PhpRenderer $renderer)
     {
-        $filteredPropertyIds = $this->settings->get('metadata_browse_properties');
+        
+       // $filteredPropertyIds = $this->settings->get('metadata_browse_properties');
         $escape = $renderer->plugin('escapeHtml');
         $translator = $this->getServiceLocator()->get('MvcTranslator');
         $html = '';
@@ -102,48 +96,59 @@ class Module extends AbstractModule
 
     public function repValueHtml($event)
     {
-        $filteredPropertyIds = json_decode($this->settings->get('metadata_browse_properties'), true);
+        $siteSettings = $this->getServiceLocator()->get('Omeka\SiteSettings');
+        $filteredPropertyIds = json_decode($siteSettings->get('metadata_browse_properties'));
         $target = $event->getTarget();
         $propertyId = $target->property()->id();
 
         $routeMatch = $this->getServiceLocator()->get('Application')
                         ->getMvcEvent()->getRouteMatch();
+        $routeMatchParams = $routeMatch->getParams();
+        
+        //setup the route params to pass to the Url helper. Both the route name and its parameters go here
+        $routeParams = [
+                'action' => 'browse',
+                'controller' => $routeMatch->getParam('__CONTROLLER__'),
+        ];
         if ($routeMatch->getParam('__ADMIN__')) {
-            $route = 'admin/default';
+            $routeParams['route'] = 'admin/default';
         } else {
-            $route = 'default';
+            $siteSlug = $routeMatch->getParam('site-slug');
+            $routeParams['route'] = 'site';
+            $routeParams['site-slug'] = $siteSlug . '/' . $routeMatch->getParam('__CONTROLLER__');
         }
+        
         $url = $this->getServiceLocator()->get('ViewHelperManager')->get('Url');
         if (in_array($propertyId, $filteredPropertyIds)) {
             $controllerName = $target->resource()->getControllerName();
-            
+            $routeParams['controller'] = $controllerName;
             $translator = $this->getServiceLocator()->get('MvcTranslator');
             $params = $event->getParams();
             $html = $params['html'];
             switch ($target->type()) {
                 case 'resource':
                     $searchTarget = $target->valueResource()->id();
-                    $searchUrl = $this->resourceSearchUrl($url, $route, $controllerName, $propertyId, $searchTarget);
+                    $searchUrl = $this->resourceSearchUrl($url, $routeParams, $propertyId, $searchTarget);
                     break;
                 case 'uri':
                     $searchTarget = $target->uri();
-                    $searchUrl = $this->uriSearchUrl($url, $route, $controllerName, $propertyId, $searchTarget);
+                    $searchUrl = $this->uriSearchUrl($url, $routeParams, $propertyId, $searchTarget);
                     break;
                 case 'literal':
                     $searchTarget = $html;
-                    $searchUrl = $this->literalSearchUrl($url, $route, $controllerName, $propertyId, $searchTarget);
+                    $searchUrl = $this->literalSearchUrl($url, $routeParams, $propertyId, $searchTarget);
                     break;
                 default:
                     $resource = $target->valueResource();
                     $uri = $target->uri();
                     if ($resource) {
                         $searchTarget = $target->valueResource()->id();
-                        $searchUrl = $this->resourceSearchUrl($url, $route, $controllerName, $propertyId, $searchTarget);
+                        $searchUrl = $this->resourceSearchUrl($url, $routeParams, $propertyId, $searchTarget);
                     } else if ($uri) {
-                        $searchUrl = $this->uriSearchUrl($url, $route, $controllerName, $propertyId, $uri);
+                        $searchUrl = $this->uriSearchUrl($url, $routeParams, $propertyId, $uri);
                     } else {
                         $searchTarget = $html;
-                        $searchUrl = $this->literalSearchUrl($url, $route, $controllerName, $propertyId, $searchTarget);
+                        $searchUrl = $this->literalSearchUrl($url, $routeParams, $propertyId, $searchTarget);
                     }
             }
 
@@ -164,10 +169,10 @@ class Module extends AbstractModule
         }
     }
 
-    protected function literalSearchUrl($url,$route, $controllerName, $propertyId, $searchTarget)
+    protected function literalSearchUrl($url, $routeParams, $propertyId, $searchTarget)
     {
-        $searchUrl = $url($route,
-              array('controller' => $controllerName, 'action' => 'browse'),
+        $searchUrl = $url($routeParams['route'],
+              $routeParams,
               array('query' => array('Search' => '',
                                      "property[$propertyId][eq][]" => $searchTarget
                                )
@@ -176,10 +181,10 @@ class Module extends AbstractModule
         return $searchUrl;
     }
 
-    protected function uriSearchUrl($url, $route, $controllerName, $propertyId, $searchTarget)
+    protected function uriSearchUrl($url, $routeParams, $propertyId, $searchTarget)
     {
-        $searchUrl = $url($route,
-              array('controller' => $controllerName, 'action' => 'browse'),
+        $searchUrl = $url($routeParams['route'],
+              $routeParams,
               array('query' => array('Search' => '',
                                      "property[$propertyId][eq][]" => $searchTarget
                                )
@@ -188,10 +193,10 @@ class Module extends AbstractModule
         return $searchUrl;
     }
 
-    protected function resourceSearchUrl($url, $route, $controllerName, $propertyId, $searchTarget)
+    protected function resourceSearchUrl($url, $routeParams, $propertyId, $searchTarget)
     {
-        $searchUrl = $url($route,
-              array('controller' => $controllerName, 'action' => 'browse'),
+        $searchUrl = $url($routeParams['route'],
+              $routeParams,
               array('query' => array('Search' => '',
                                      "property[$propertyId][res][]" => $searchTarget
                                )
