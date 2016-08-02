@@ -1,12 +1,12 @@
 <?php
 namespace MetadataBrowse;
 
+use MetadataBrowse\Form\ConfigForm;
 use Omeka\Module\AbstractModule;
 use Omeka\Entity\Job;
 use Omeka\Entity\Value;
 use Omeka\Event\Event;
 use Zend\ServiceManager\ServiceLocatorInterface;
-use Zend\Form\Form;
 use Zend\Mvc\Controller\AbstractController;
 use Zend\View\Renderer\PhpRenderer;
 use Zend\EventManager\SharedEventManagerInterface;
@@ -20,8 +20,8 @@ class Module extends AbstractModule
     )
     {
         if (version_compare($newVersion, '0.1.1-alpha', '>')) {
-            $settings = $serviceLocator->get('Omeka\Settings');
-            $settings->delete('metadata_browse_properties');
+            // $settings = $serviceLocator->get('Omeka\Settings');
+            // $settings->delete('metadata_browse_properties');
         }
     }
 
@@ -70,9 +70,36 @@ class Module extends AbstractModule
         } else {
             $propertyIds = json_encode(array());
         }
-        $this->settings->set('metadata_browse_properties', $propertyIds);
+        $globalSettings = $this->getServiceLocator()->get('Omeka\Settings');
+        $globalSettings->set('metadata_browse_properties', $propertyIds);
+        $globalSettings->set('metadata_browse_use_globals', $params['metadata_browse_use_globals']);
     }
 
+    public function getConfigForm(PhpRenderer $renderer)
+    {
+        $globalSettings = $this->getServiceLocator()->get('Omeka\Settings');
+        $filteredPropertyIds = $globalSettings->get('metadata_browse_properties');
+        $escape = $renderer->plugin('escapeHtml');
+        $translator = $this->getServiceLocator()->get('MvcTranslator');
+        $html = '';
+        $html .= "<script type='text/javascript'>
+        var filteredPropertyIds = $filteredPropertyIds;
+        </script>
+        ";
+        $formElementManager = $this->getServiceLocator()->get('formElementManager');
+        $form = $formElementManager->get(ConfigForm::class, array());
+        $html .= $renderer->formCollection($form, false);
+        $html .= "<div id='properties'><p>" . $escape($translator->translate("Choose properties from the sidebar to be searchable on the admin side.")) . "</p></div>";
+        $html .= $renderer->partial('metadata-browse/property-template', array('escape' => $escape, 'translator' => $translator));
+        $renderer->headScript()->appendFile($renderer->assetUrl('js/metadata-browse.js', 'MetadataBrowse'));
+        $renderer->headLink()->appendStylesheet($renderer->assetUrl('css/metadata-browse.css', 'MetadataBrowse'));
+        $renderer->htmlElement('body')->appendAttribute('class', 'sidebar-open');
+        $selectorHtml = $renderer->propertySelector('Select properties to be searchable');
+        $html .= "<div class='sidebar active'>$selectorHtml</div>";
+        
+        return $html;
+    }
+    
     public function addCSS($event)
     {
         $view = $event->getTarget();
@@ -81,8 +108,8 @@ class Module extends AbstractModule
 
     public function repValueHtml($event)
     {
-        $siteSettings = $this->getServiceLocator()->get('Omeka\SiteSettings');
-        $filteredPropertyIds = json_decode($siteSettings->get('metadata_browse_properties'));
+
+        
         $target = $event->getTarget();
         $propertyId = $target->property()->id();
 
@@ -94,8 +121,24 @@ class Module extends AbstractModule
                 'action' => 'browse',
         ];
         if ($routeMatch->getParam('__ADMIN__')) {
+            $globalSettings = $this->getServiceLocator()->get('Omeka\Settings');
+            if($globalSettings->get('metadata_browse_use_globals')) {
+                $filteredPropertyIds = json_decode($globalSettings->get('metadata_browse_properties'));
+            } else {
+                $api = $this->getServiceLocator()->get('Omeka\ApiManager');
+                $sites = $api->search('sites', array())->getContent();
+                $siteSettings = $this->getServiceLocator()->get('Omeka\SiteSettings');
+                $filteredPropertyIds = [];
+                foreach($sites as $site) {
+                    $siteSettings->setSite($site);
+                    $currentSettings = json_decode($siteSettings->get('metadata_browse_properties'));
+                    $filteredPropertyIds = array_merge($currentSettings, $filteredPropertyIds);
+                }
+            }
+
             $routeParams['route'] = 'admin/default';
         } else {
+            $filteredPropertyIds = json_decode($siteSettings->get('metadata_browse_properties'));
             $siteSlug = $routeMatch->getParam('site-slug');
             $routeParams['route'] = 'site';
             $routeParams['site-slug'] = $siteSlug . '/' . $target->resource()->getControllerName();

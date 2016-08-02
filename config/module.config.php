@@ -10,6 +10,11 @@ return [
             'MetadataBrowse\Controller\Admin\Index' => 'MetadataBrowse\Controller\Admin\IndexController'
         ],
     ],
+    'form_elements' => [
+        'factories' => [
+            'MetadataBrowse\Form\ConfigForm' => 'MetadataBrowse\Service\Form\ConfigFormFactory',
+        ],
+    ],
     'navigation' => [
         'site' => [
             [
