@@ -10,9 +10,10 @@ class ConfigFormFactory implements FactoryInterface
 {
     public function createService(ServiceLocatorInterface $elements)
     {
-        $form = new ConfigForm;
+        $form = new ConfigForm();
         $globalSettings = $elements->getServiceLocator()->get('Omeka\Settings');
         $form->setGlobalSettings($globalSettings);
+
         return $form;
     }
 }

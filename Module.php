@@ -1,32 +1,30 @@
 <?php
+
 namespace MetadataBrowse;
 
 use MetadataBrowse\Form\ConfigForm;
 use Omeka\Module\AbstractModule;
-use Omeka\Entity\Job;
 use Omeka\Entity\Value;
 use Omeka\Event\Event;
 use Zend\ServiceManager\ServiceLocatorInterface;
 use Zend\Mvc\Controller\AbstractController;
 use Zend\View\Renderer\PhpRenderer;
 use Zend\EventManager\SharedEventManagerInterface;
-use Zend\Mvc\MvcEvent;
 
 class Module extends AbstractModule
 {
-
     public function uninstall(ServiceLocatorInterface $serviceLocator)
     {
         $logger = $serviceLocator->get('Omeka\Logger');
         $settings = $serviceLocator->get('Omeka\Settings');
         $settings->delete('metadata_browse_properties');
         $settings->delete('metadata_browse_use_globals');
-        
+
         $api = $serviceLocator->get('Omeka\ApiManager');
         $sites = $api->search('sites', array())->getContent();
         $siteSettings = $serviceLocator->get('Omeka\SiteSettings');
-        
-        foreach($sites as $site) {
+
+        foreach ($sites as $site) {
             $siteSettings->setSite($site);
             $siteSettings->delete('metadata_browse_properties');
         }
@@ -34,18 +32,17 @@ class Module extends AbstractModule
 
     public function getConfig()
     {
-        return include __DIR__ . '/config/module.config.php';
+        return include __DIR__.'/config/module.config.php';
     }
-
 
     public function attachListeners(SharedEventManagerInterface $sharedEventManager)
     {
         $sharedEventManager->attach(
                 'Omeka\Api\Representation\ValueRepresentation',
                 Event::REP_VALUE_HTML,
-                array($this, 'repValueHtml' )
+                array($this, 'repValueHtml')
                 );
-        
+
         $sharedEventManager->attach(
                 array(
                 'Omeka\Controller\Admin\Item',
@@ -56,7 +53,7 @@ class Module extends AbstractModule
                 Event::VIEW_SHOW_AFTER,
                 array($this, 'addCSS')
                 );
-        
+
         $sharedEventManager->attach(
                 array(
                 'Omeka\Controller\Admin\Item',
@@ -96,17 +93,17 @@ class Module extends AbstractModule
         $formElementManager = $this->getServiceLocator()->get('formElementManager');
         $form = $formElementManager->get(ConfigForm::class, array());
         $html .= $renderer->formCollection($form, false);
-        $html .= "<div id='properties'><p>" . $escape($translator->translate("Choose properties from the sidebar to be searchable on the admin side.")) . "</p></div>";
+        $html .= "<div id='properties'><p>".$escape($translator->translate('Choose properties from the sidebar to be searchable on the admin side.')).'</p></div>';
         $html .= $renderer->partial('metadata-browse/property-template', array('escape' => $escape, 'translator' => $translator));
         $renderer->headScript()->appendFile($renderer->assetUrl('js/metadata-browse.js', 'MetadataBrowse'));
         $renderer->headLink()->appendStylesheet($renderer->assetUrl('css/metadata-browse.css', 'MetadataBrowse'));
         $renderer->htmlElement('body')->appendAttribute('class', 'sidebar-open');
         $selectorHtml = $renderer->propertySelector('Select properties to be searchable');
         $html .= "<div class='sidebar active'>$selectorHtml</div>";
-        
+
         return $html;
     }
-    
+
     public function addCSS($event)
     {
         $view = $event->getTarget();
@@ -115,8 +112,6 @@ class Module extends AbstractModule
 
     public function repValueHtml($event)
     {
-
-        
         $target = $event->getTarget();
         $propertyId = $target->property()->id();
 
@@ -129,14 +124,14 @@ class Module extends AbstractModule
         ];
         if ($routeMatch->getParam('__ADMIN__')) {
             $globalSettings = $this->getServiceLocator()->get('Omeka\Settings');
-            if($globalSettings->get('metadata_browse_use_globals')) {
+            if ($globalSettings->get('metadata_browse_use_globals')) {
                 $filteredPropertyIds = json_decode($globalSettings->get('metadata_browse_properties'));
             } else {
                 $api = $this->getServiceLocator()->get('Omeka\ApiManager');
                 $sites = $api->search('sites', array())->getContent();
                 $siteSettings = $this->getServiceLocator()->get('Omeka\SiteSettings');
                 $filteredPropertyIds = [];
-                foreach($sites as $site) {
+                foreach ($sites as $site) {
                     $siteSettings->setSite($site);
                     $currentSettings = json_decode($siteSettings->get('metadata_browse_properties'));
                     $filteredPropertyIds = array_merge($currentSettings, $filteredPropertyIds);
@@ -148,14 +143,14 @@ class Module extends AbstractModule
             $filteredPropertyIds = json_decode($siteSettings->get('metadata_browse_properties'));
             $siteSlug = $routeMatch->getParam('site-slug');
             $routeParams['route'] = 'site';
-            $routeParams['site-slug'] = $siteSlug . '/' . $target->resource()->getControllerName();
+            $routeParams['site-slug'] = $siteSlug.'/'.$target->resource()->getControllerName();
         }
-        
+
         $url = $this->getServiceLocator()->get('ViewHelperManager')->get('Url');
         if (in_array($propertyId, $filteredPropertyIds)) {
             $controllerName = $target->resource()->getControllerName();
             $routeParams['controller'] = $controllerName;
-            
+
             $translator = $this->getServiceLocator()->get('MvcTranslator');
             $params = $event->getParams();
             $html = $params['html'];
@@ -178,7 +173,7 @@ class Module extends AbstractModule
                     if ($resource) {
                         $searchTarget = $target->valueResource()->id();
                         $searchUrl = $this->resourceSearchUrl($url, $routeParams, $propertyId, $searchTarget);
-                    } else if ($uri) {
+                    } elseif ($uri) {
                         $searchUrl = $this->uriSearchUrl($url, $routeParams, $propertyId, $uri);
                     } else {
                         $searchTarget = $html;
@@ -197,7 +192,7 @@ class Module extends AbstractModule
                     $controllerLabel = $controllerName;
                 break;
             }
-            $text = $translator->translate(sprintf("See all %s with this value", $controllerLabel));
+            $text = $translator->translate(sprintf('See all %s with this value', $controllerLabel));
             $link = "<a class='metadata-browse-link' href='$searchUrl'>$text</a>";
             $event->setParam('html', "$html $link");
         }
@@ -208,10 +203,11 @@ class Module extends AbstractModule
         $searchUrl = $url($routeParams['route'],
               $routeParams,
               array('query' => array('Search' => '',
-                                     "property[$propertyId][eq][]" => $searchTarget
-                               )
+                                     "property[$propertyId][eq][]" => $searchTarget,
+                               ),
                     )
           );
+
         return $searchUrl;
     }
 
@@ -220,10 +216,11 @@ class Module extends AbstractModule
         $searchUrl = $url($routeParams['route'],
               $routeParams,
               array('query' => array('Search' => '',
-                                     "property[$propertyId][eq][]" => $searchTarget
-                               )
+                                     "property[$propertyId][eq][]" => $searchTarget,
+                               ),
                     )
           );
+
         return $searchUrl;
     }
 
@@ -232,10 +229,11 @@ class Module extends AbstractModule
         $searchUrl = $url($routeParams['route'],
               $routeParams,
               array('query' => array('Search' => '',
-                                     "property[$propertyId][res][]" => $searchTarget
-                               )
+                                     "property[$propertyId][res][]" => $searchTarget,
+                               ),
                     )
           );
+
         return $searchUrl;
     }
 }

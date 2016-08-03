@@ -1,13 +1,14 @@
 <?php
+
 return [
     'view_manager' => [
-        'template_path_stack'      => [
-            OMEKA_PATH . '/modules/MetadataBrowse/view',
+        'template_path_stack' => [
+            OMEKA_PATH.'/modules/MetadataBrowse/view',
         ],
     ],
     'controllers' => [
         'invokables' => [
-            'MetadataBrowse\Controller\Admin\Index' => 'MetadataBrowse\Controller\Admin\IndexController'
+            'MetadataBrowse\Controller\Admin\Index' => 'MetadataBrowse\Controller\Admin\IndexController',
         ],
     ],
     'form_elements' => [
@@ -62,7 +63,7 @@ return [
                                             ],
                                         ],
                                     ],
-                                ]
+                                ],
                             ],
                         ],
                     ],

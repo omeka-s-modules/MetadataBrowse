@@ -1,10 +1,10 @@
 <?php
+
 namespace MetadataBrowse\Controller\Admin;
 
 use Zend\View\Model\ViewModel;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\Form\Form;
-
 
 class IndexController extends AbstractActionController
 {
@@ -12,7 +12,7 @@ class IndexController extends AbstractActionController
     {
         $site = $this->currentSite();
         $siteSettings = $this->siteSettings();
-        $view = new ViewModel;
+        $view = new ViewModel();
         $form = $this->getForm(Form::class);
         if ($this->getRequest()->isPost()) {
             $params = $this->params()->fromPost();
@@ -23,10 +23,11 @@ class IndexController extends AbstractActionController
             }
             $siteSettings->set('metadata_browse_properties', $propertyIds);
         }
-        
+
         $filteredPropertyIds = $siteSettings->get('metadata_browse_properties');
         $view->setVariable('form', $form);
         $view->setVariable('filteredPropertyIds', $filteredPropertyIds);
+
         return $view;
     }
 }
