@@ -140,7 +140,8 @@ class Module extends AbstractModule
 
             $routeParams['route'] = 'admin/default';
         } else {
-            $filteredPropertyIds = json_decode($siteSettings->get('metadata_browse_properties'));
+            $siteSettings = $this->getServiceLocator()->get('Omeka\SiteSettings');
+            $filteredPropertyIds = json_decode($siteSettings->get('metadata_browse_properties', array()));
             $siteSlug = $routeMatch->getParam('site-slug');
             $routeParams['route'] = 'site';
             $routeParams['site-slug'] = $siteSlug.'/'.$target->resource()->getControllerName();
