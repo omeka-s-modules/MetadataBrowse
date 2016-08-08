@@ -133,7 +133,7 @@ class Module extends AbstractModule
                 $filteredPropertyIds = [];
                 foreach ($sites as $site) {
                     $siteSettings->setSite($site);
-                    $currentSettings = json_decode($siteSettings->get('metadata_browse_properties'));
+                    $currentSettings = json_decode($siteSettings->get('metadata_browse_properties', array()));
                     $filteredPropertyIds = array_merge($currentSettings, $filteredPropertyIds);
                 }
             }
