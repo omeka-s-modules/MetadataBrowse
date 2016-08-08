@@ -29,6 +29,26 @@ class Module extends AbstractModule
             $siteSettings->delete('metadata_browse_properties');
         }
     }
+    
+    public function upgrade($oldVersion, $newVersion, ServiceLocatorInterface $serviceLocator)
+    {
+        //fix the double json encoding that was stored
+        if (version_compare($oldVersion, '0.2.1-alpha', '<')) {
+            $settings = $serviceLocator->get('Omeka\Settings');
+            $globalProperties = json_decode($settings->get('metadata_browse_properties'));
+            $settings->set('metadata_browse_properties', $globalProperties);
+
+            $api = $serviceLocator->get('Omeka\ApiManager');
+            $sites = $api->search('sites', array())->getContent();
+            $siteSettings = $serviceLocator->get('Omeka\SiteSettings');
+
+            foreach ($sites as $site) {
+                $siteSettings->setSite($site);
+                $currentSiteSettings = json_decode($siteSettings->get('metadata_browse_properties'));
+                $siteSettings->set('metadata_browse_properties', $currentSiteSettings);
+            }
+        }
+    }
 
     public function getConfig()
     {
@@ -70,9 +90,9 @@ class Module extends AbstractModule
     {
         $params = $controller->params()->fromPost();
         if (isset($params['propertyIds'])) {
-            $propertyIds = json_encode($params['propertyIds']);
+            $propertyIds = $params['propertyIds'];
         } else {
-            $propertyIds = json_encode(array());
+            $propertyIds = [];
         }
         $globalSettings = $this->getServiceLocator()->get('Omeka\Settings');
         $globalSettings->set('metadata_browse_properties', $propertyIds);
@@ -125,7 +145,7 @@ class Module extends AbstractModule
         if ($routeMatch->getParam('__ADMIN__')) {
             $globalSettings = $this->getServiceLocator()->get('Omeka\Settings');
             if ($globalSettings->get('metadata_browse_use_globals')) {
-                $filteredPropertyIds = json_decode($globalSettings->get('metadata_browse_properties'));
+                $filteredPropertyIds = $globalSettings->get('metadata_browse_properties', []);
             } else {
                 $api = $this->getServiceLocator()->get('Omeka\ApiManager');
                 $sites = $api->search('sites', array())->getContent();
@@ -133,7 +153,7 @@ class Module extends AbstractModule
                 $filteredPropertyIds = [];
                 foreach ($sites as $site) {
                     $siteSettings->setSite($site);
-                    $currentSettings = json_decode($siteSettings->get('metadata_browse_properties', array()));
+                    $currentSettings = $siteSettings->get('metadata_browse_properties', []);
                     $filteredPropertyIds = array_merge($currentSettings, $filteredPropertyIds);
                 }
             }
@@ -141,7 +161,7 @@ class Module extends AbstractModule
             $routeParams['route'] = 'admin/default';
         } else {
             $siteSettings = $this->getServiceLocator()->get('Omeka\SiteSettings');
-            $filteredPropertyIds = json_decode($siteSettings->get('metadata_browse_properties', array()));
+            $filteredPropertyIds = $siteSettings->get('metadata_browse_properties', []);
             $siteSlug = $routeMatch->getParam('site-slug');
             $routeParams['route'] = 'site';
             $routeParams['site-slug'] = $siteSlug.'/'.$target->resource()->getControllerName();
