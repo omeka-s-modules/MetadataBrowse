@@ -17,9 +17,9 @@ class IndexController extends AbstractActionController
         if ($this->getRequest()->isPost()) {
             $params = $this->params()->fromPost();
             if (isset($params['propertyIds'])) {
-                $propertyIds = json_encode($params['propertyIds']);
+                $propertyIds = $params['propertyIds'];
             } else {
-                $propertyIds = json_encode(array());
+                $propertyIds = [];
             }
             $siteSettings->set('metadata_browse_properties', $propertyIds);
         }
