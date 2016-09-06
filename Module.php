@@ -63,27 +63,25 @@ class Module extends AbstractModule
                 array($this, 'repValueHtml')
                 );
 
-        $sharedEventManager->attach(
-                array(
+        $triggerIdentifiers = array(
                 'Omeka\Controller\Admin\Item',
                 'Omeka\Controller\Admin\ItemSet',
                 'Omeka\Controller\Site\Item',
                 'Omeka\Controller\Site\ItemSet',
-                ),
+                );
+        foreach ($triggerIdentifiers as $identifier) {
+            $sharedEventManager->attach(
+                $identifier,
                 Event::VIEW_SHOW_AFTER,
                 array($this, 'addCSS')
-                );
+            );
 
-        $sharedEventManager->attach(
-                array(
-                'Omeka\Controller\Admin\Item',
-                'Omeka\Controller\Admin\ItemSet',
-                'Omeka\Controller\Site\Item',
-                'Omeka\Controller\Site\ItemSet',
-                ),
+            $sharedEventManager->attach(
+                $identifier,
                 Event::VIEW_BROWSE_AFTER,
                 array($this, 'addCSS')
-                );
+            );
+        }
     }
 
     public function handleConfigForm(AbstractController $controller)
@@ -102,7 +100,7 @@ class Module extends AbstractModule
     public function getConfigForm(PhpRenderer $renderer)
     {
         $globalSettings = $this->getServiceLocator()->get('Omeka\Settings');
-        $filteredPropertyIds = $globalSettings->get('metadata_browse_properties');
+        $filteredPropertyIds = json_encode($globalSettings->get('metadata_browse_properties'));
         $escape = $renderer->plugin('escapeHtml');
         $translator = $this->getServiceLocator()->get('MvcTranslator');
         $html = '';
@@ -110,7 +108,7 @@ class Module extends AbstractModule
         var filteredPropertyIds = $filteredPropertyIds;
         </script>
         ";
-        $formElementManager = $this->getServiceLocator()->get('formElementManager');
+        $formElementManager = $this->getServiceLocator()->get('FormElementManager');
         $form = $formElementManager->get(ConfigForm::class, array());
         $html .= $renderer->formCollection($form, false);
         $html .= "<div id='properties'><p>".$escape($translator->translate('Choose properties from the sidebar to be searchable on the admin side.')).'</p></div>';
