@@ -3,15 +3,15 @@
 namespace MetadataBrowse\Service\Form;
 
 use MetadataBrowse\Form\ConfigForm;
-use Zend\ServiceManager\FactoryInterface;
-use Zend\ServiceManager\ServiceLocatorInterface;
+use Zend\ServiceManager\Factory\FactoryInterface;
+use Interop\Container\ContainerInterface;
 
 class ConfigFormFactory implements FactoryInterface
 {
-    public function createService(ServiceLocatorInterface $elements)
+    public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
     {
         $form = new ConfigForm();
-        $globalSettings = $elements->getServiceLocator()->get('Omeka\Settings');
+        $globalSettings = $container->get('Omeka\Settings');
         $form->setGlobalSettings($globalSettings);
 
         return $form;
