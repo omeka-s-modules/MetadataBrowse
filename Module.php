@@ -87,7 +87,7 @@ class Module extends AbstractModule
 
     public function repValueHtml($event)
     {
-        $filteredPropertyIds = json_decode($this->settings->get('metadata_browse_properties'), true);
+        $filteredPropertyIds = $this->settings->get('metadata_browse_properties');
         $target = $event->getTarget();
         $propertyId = $target->property()->id();
         $routeMatch = $this->getServiceLocator()->get('Application')
