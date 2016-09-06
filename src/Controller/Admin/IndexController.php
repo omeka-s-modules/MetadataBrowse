@@ -24,7 +24,7 @@ class IndexController extends AbstractActionController
             $siteSettings->set('metadata_browse_properties', $propertyIds);
         }
 
-        $filteredPropertyIds = $siteSettings->get('metadata_browse_properties');
+        $filteredPropertyIds = json_encode($siteSettings->get('metadata_browse_properties'));
         $view->setVariable('form', $form);
         $view->setVariable('filteredPropertyIds', $filteredPropertyIds);
 
