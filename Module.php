@@ -59,7 +59,7 @@ class Module extends AbstractModule
     {
         $sharedEventManager->attach(
                 'Omeka\Api\Representation\ValueRepresentation',
-                'rep_value_html',
+                'rep.value.html',
                 array($this, 'repValueHtml')
                 );
 
