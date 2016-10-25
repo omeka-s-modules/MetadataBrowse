@@ -5,11 +5,11 @@ namespace MetadataBrowse;
 use MetadataBrowse\Form\ConfigForm;
 use Omeka\Module\AbstractModule;
 use Omeka\Entity\Value;
-use Omeka\Event\Event;
 use Zend\ServiceManager\ServiceLocatorInterface;
 use Zend\Mvc\Controller\AbstractController;
 use Zend\View\Renderer\PhpRenderer;
 use Zend\EventManager\SharedEventManagerInterface;
+use Zend\EventManager\Event;
 
 class Module extends AbstractModule
 {
@@ -59,7 +59,7 @@ class Module extends AbstractModule
     {
         $sharedEventManager->attach(
                 'Omeka\Api\Representation\ValueRepresentation',
-                Event::REP_VALUE_HTML,
+                'rep_value_html',
                 array($this, 'repValueHtml')
                 );
 
@@ -72,13 +72,13 @@ class Module extends AbstractModule
         foreach ($triggerIdentifiers as $identifier) {
             $sharedEventManager->attach(
                 $identifier,
-                Event::VIEW_SHOW_AFTER,
+                'view.show.after',
                 array($this, 'addCSS')
             );
 
             $sharedEventManager->attach(
                 $identifier,
-                Event::VIEW_BROWSE_AFTER,
+                'view.browse.after',
                 array($this, 'addCSS')
             );
         }
