@@ -15,7 +15,7 @@ class ConfigForm extends Form
             'name' => 'metadata_browse_use_globals',
             'options' => array(
                         'label' => 'Use global configuration on admin side', // @translate
-                        'info' => 'If checked, the properties set below will be made links on the admin side. Otherwise, all properties made links in all sites will be links on the admin side.', // @translate
+                        'info' => "If checked, the properties selected below will be linked on the admin side, overriding all site-specific settings. Each site's own settings will be reflected on the public side. Otherwise, the admin side will reflect the aggregated settings for all sites; anything selected to be a link in any site will be a link on the admin side.", // @translate
                     ),
             'attributes' => array(
                         'checked' => $this->globalSettings->get('metadata_browse_use_globals') ? 'checked' : '',
