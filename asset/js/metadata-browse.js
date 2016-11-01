@@ -45,6 +45,17 @@
 
     function copyTemplate(targetLi) {
         var id = targetLi.data('property-id');
+        //check if it has already been added
+        var skip = false;
+        $('.property-ids').each(function() {
+            if ($(this).val() == id) {
+                skip = true;
+            }
+        });
+        if (skip) {
+            return;
+        }
+
         var label = targetLi.data('child-search');
         var description = targetLi.find('p.field-comment').html();
         var term = targetLi.data('property-term');

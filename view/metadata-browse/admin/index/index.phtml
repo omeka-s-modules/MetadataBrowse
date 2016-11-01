@@ -1,0 +1,32 @@
+<?php
+$this->headScript()->appendFile($this->assetUrl('js/metadata-browse.js', 'MetadataBrowse'));
+$this->headLink()->appendStylesheet($this->assetUrl('css/metadata-browse.css', 'MetadataBrowse'));
+$this->htmlElement('body')->appendAttribute('class', 'sidebar-open');
+
+?>
+
+
+<?php echo $this->pageTitle($this->translate('Metadata Browse · Settings')); ?>
+<script type='text/javascript'>
+    var filteredPropertyIds = <?php echo $filteredPropertyIds; ?>
+</script>
+
+<?php echo $this->form()->openTag($form); ?>
+
+<div id='properties'>
+    <p>
+        <?php echo $this->translate("Choose properties from the sidebar to be searchable."); ?>
+    </p>
+</div>
+<?php echo $this->partial('metadata-browse/property-template'); ?>
+
+<fieldset id='page-actions'>
+    <button type="submit"><?php echo $this->translate('Save'); ?></button>
+</fieldset>
+<?php echo $this->formCollection($form, false); ?>
+
+<?php echo $this->form()->closeTag($form); ?>
+
+<div class='sidebar active'>
+<?php echo $this->propertySelector('Select properties to be searchable'); ?>
+</div>
