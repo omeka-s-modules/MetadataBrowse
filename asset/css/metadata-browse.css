@@ -2,6 +2,11 @@
     display: none;
 }
 
+.actions a:before {
+    line-height: 36px;
+    margin-right: 3px;
+}
+
 .field.delete {
     background-color: #fcc;
 }
