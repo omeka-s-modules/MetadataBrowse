@@ -6,9 +6,12 @@
     background-color: #fcc;
 }
 
+.actions li {
+    margin-top: 6px;
+}
 
 .field-meta {
-    width: calc(100% - 5em);
+    width: calc(100% - 3em);
     display: inline;
 }
 
