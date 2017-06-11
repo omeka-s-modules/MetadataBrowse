@@ -10,8 +10,11 @@
     margin-top: 6px;
 }
 
+form > div.field > div.field-meta {
+    width: calc(100% - 1em);
+}
+
 .field-meta {
-    width: calc(100% - 3em);
     display: inline;
 }
 
