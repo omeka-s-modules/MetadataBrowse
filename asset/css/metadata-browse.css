@@ -11,9 +11,15 @@
     background-color: #fcc;
 }
 
+.actions.metadata-browse li {
+    margin-top: 6px;
+}
+
+form > div.field > div.field-meta {
+    width: calc(100% - 1em);
+}
 
 .field-meta {
-    width: calc(100% - 5em);
     display: inline;
 }
 

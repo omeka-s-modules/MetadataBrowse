@@ -3,7 +3,17 @@ $this->htmlElement('body')->appendAttribute('class', 'sidebar-open');
 ?>
 <div class="resource-values field template">
     <input type="hidden" disabled="disabled" name="propertyIds[]" class="property-ids"></input>
-    <ul class="actions">
+    
+    <div class="field-meta">    
+        <div class="field-label"></div>
+        <a href="#" class="expand" aria-label="<?php echo $this->translate("Expand"); ?>"></a>
+        <div class="collapsible">
+            <div class="field-description"></div>
+            <div class="field-term" title="<?php echo $this->translate("Property term for development use"); ?>"></div>
+        </div>
+    </div>
+    
+    <ul class="actions metadata-browse">
         <li>
             <a href="#" 
             class="o-icon-delete remove-property" 
@@ -18,13 +28,6 @@ $this->htmlElement('body')->appendAttribute('class', 'sidebar-open');
         </li>
     </ul>
     
-    <div class="field-meta">    
-        <div class="field-label"></div>
-        <a href="#" class="expand" aria-label="<?php echo $this->translate("Expand"); ?>"></a>
-        <div class="collapsible">
-            <div class="field-description"></div>
-            <div class="field-term" title="<?php echo $this->translate("Property term for development use"); ?>"></div>
-        </div>
-    </div>
+
     <span class="restore-property"><?php echo $this->translate("Property to be removed"); ?></span>
 </div>
