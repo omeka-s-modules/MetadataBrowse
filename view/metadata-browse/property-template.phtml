@@ -12,7 +12,7 @@ $this->htmlElement('body')->appendAttribute('class', 'sidebar-open');
             <div class="field-term" title="<?php echo $this->translate("Property term for development use"); ?>"></div>
         </div>
     </div>
-    
+    <span class="restore-property"><?php echo $this->translate("Property to be removed"); ?></span>
     <ul class="actions metadata-browse">
         <li>
             <a href="#" 
@@ -24,10 +24,8 @@ $this->htmlElement('body')->appendAttribute('class', 'sidebar-open');
             <a href="#" 
             class="o-icon-undo restore-property" 
             title="<?php echo $this->translate("Undo remove property"); ?>" 
-            aria-label="<?php echo $this->translate("Undo remove property"); ?>"></a>
+            aria-label="<?php echo $this->translate("Undo remove property"); ?>">
+            </a>
         </li>
     </ul>
-    
-
-    <span class="restore-property"><?php echo $this->translate("Property to be removed"); ?></span>
 </div>
