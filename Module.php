@@ -25,7 +25,7 @@ class Module extends AbstractModule
         $siteSettings = $serviceLocator->get('Omeka\Settings\Site');
 
         foreach ($sites as $site) {
-            $siteSettings->setSite($site);
+            $siteSettings->setTargetId($site->id());
             $siteSettings->delete('metadata_browse_properties');
         }
     }
@@ -43,7 +43,7 @@ class Module extends AbstractModule
             $siteSettings = $serviceLocator->get('Omeka\Settings\Site');
 
             foreach ($sites as $site) {
-                $siteSettings->setSite($site);
+                $siteSettings->setTargetId($site->id());
                 $currentSiteSettings = json_decode($siteSettings->get('metadata_browse_properties'));
                 $siteSettings->set('metadata_browse_properties', $currentSiteSettings);
             }
@@ -150,7 +150,7 @@ class Module extends AbstractModule
                 $siteSettings = $this->getServiceLocator()->get('Omeka\Settings\Site');
                 $filteredPropertyIds = [];
                 foreach ($sites as $site) {
-                    $siteSettings->setSite($site);
+                    $siteSettings->setTargetId($site->id());
                     $currentSettings = $siteSettings->get('metadata_browse_properties', []);
                     $filteredPropertyIds = array_merge($currentSettings, $filteredPropertyIds);
                 }
