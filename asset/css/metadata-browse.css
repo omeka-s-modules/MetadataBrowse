@@ -15,19 +15,6 @@
     margin-top: 6px;
 }
 
-form > div.field > div.field-meta {
-    width: calc(100% - 1em);
-}
-
-.field-meta {
-    display: inline;
-}
-
-.field-meta .expand,
-.field-meta .collapse {
-    margin: 0 0.5em 0;
-}
-
 .collapse + .collapsible {
     margin-top: .5em;
 }
