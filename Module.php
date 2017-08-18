@@ -22,14 +22,14 @@ class Module extends AbstractModule
 
         $api = $serviceLocator->get('Omeka\ApiManager');
         $sites = $api->search('sites', array())->getContent();
-        $siteSettings = $serviceLocator->get('Omeka\SiteSettings');
+        $siteSettings = $serviceLocator->get('Omeka\Settings\Site');
 
         foreach ($sites as $site) {
-            $siteSettings->setSite($site);
+            $siteSettings->setTargetId($site->id());
             $siteSettings->delete('metadata_browse_properties');
         }
     }
-    
+
     public function upgrade($oldVersion, $newVersion, ServiceLocatorInterface $serviceLocator)
     {
         //fix the double json encoding that was stored
@@ -40,10 +40,10 @@ class Module extends AbstractModule
 
             $api = $serviceLocator->get('Omeka\ApiManager');
             $sites = $api->search('sites', array())->getContent();
-            $siteSettings = $serviceLocator->get('Omeka\SiteSettings');
+            $siteSettings = $serviceLocator->get('Omeka\Settings\Site');
 
             foreach ($sites as $site) {
-                $siteSettings->setSite($site);
+                $siteSettings->setTargetId($site->id());
                 $currentSiteSettings = json_decode($siteSettings->get('metadata_browse_properties'));
                 $siteSettings->set('metadata_browse_properties', $currentSiteSettings);
             }
@@ -147,10 +147,10 @@ class Module extends AbstractModule
             } else {
                 $api = $this->getServiceLocator()->get('Omeka\ApiManager');
                 $sites = $api->search('sites', array())->getContent();
-                $siteSettings = $this->getServiceLocator()->get('Omeka\SiteSettings');
+                $siteSettings = $this->getServiceLocator()->get('Omeka\Settings\Site');
                 $filteredPropertyIds = [];
                 foreach ($sites as $site) {
-                    $siteSettings->setSite($site);
+                    $siteSettings->setTargetId($site->id());
                     $currentSettings = $siteSettings->get('metadata_browse_properties', []);
                     $filteredPropertyIds = array_merge($currentSettings, $filteredPropertyIds);
                 }
@@ -158,7 +158,7 @@ class Module extends AbstractModule
 
             $routeParams['route'] = 'admin/default';
         } else {
-            $siteSettings = $this->getServiceLocator()->get('Omeka\SiteSettings');
+            $siteSettings = $this->getServiceLocator()->get('Omeka\Settings\Site');
             $filteredPropertyIds = $siteSettings->get('metadata_browse_properties', []);
             $siteSlug = $routeMatch->getParam('site-slug');
             $routeParams['route'] = 'site';
