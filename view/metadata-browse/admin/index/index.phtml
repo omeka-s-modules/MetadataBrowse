@@ -24,10 +24,6 @@ $this->htmlElement('body')->appendAttribute('class', 'sidebar-open');
     <button type="submit"><?php echo $this->translate('Save'); ?></button>
 </fieldset>
 
-<p>
-hi
-<?php echo $this->translate("If checked, the properties selected below will be linked on the admin side, overriding all site-specific settings. Each site's own settings will be reflected on the public side. Otherwise, the admin side will reflect the aggregated settings for all sites; anything selected to be a link in any site will be a link on the admin side."); ?>
-</p>
 <?php echo $this->formCollection($form, false); ?>
 
 <?php echo $this->form()->closeTag($form); ?>
