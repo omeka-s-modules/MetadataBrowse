@@ -11,10 +11,6 @@
     background-color: #fcc;
 }
 
-.actions.metadata-browse li {
-    margin-top: 6px;
-}
-
 .collapse + .collapsible {
     margin-top: .5em;
 }
