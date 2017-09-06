@@ -31,3 +31,17 @@ a.metadata-browse-link {
 .value.items a.metadata-browse-link:after {
     content: "";
 }
+
+.show .property .resource {
+    display: block;
+}
+
+.property .value img {
+    float: left;
+    margin: 0 6px 12px 0;
+}
+
+.property .value a {
+    width: calc(100% - 48px);
+    float: right;
+}
