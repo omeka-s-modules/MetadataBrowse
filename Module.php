@@ -223,9 +223,11 @@ class Module extends AbstractModule
         $searchUrl = $url($routeParams['route'],
               $routeParams,
               array('query' => array('Search' => '',
-                                     "property[$propertyId][eq][]" => $searchTarget,
-                               ),
-                    )
+                                     'property[0][property]' => $propertyId,
+                                     'property[0][type]' => 'eq',
+                                     'property[0][text]' => $searchTarget,
+                           ),
+                      )
           );
 
         return $searchUrl;
@@ -235,10 +237,12 @@ class Module extends AbstractModule
     {
         $searchUrl = $url($routeParams['route'],
               $routeParams,
-              array('query' => array('Search' => '',
-                                     "property[$propertyId][eq][]" => $searchTarget,
-                               ),
-                    )
+                array('query' => array('Search' => '',
+                    'property[0][property]' => $propertyId,
+                    'property[0][type]' => 'eq',
+                    'property[0][text]' => $searchTarget,
+                ),
+            )
           );
 
         return $searchUrl;
@@ -248,10 +252,12 @@ class Module extends AbstractModule
     {
         $searchUrl = $url($routeParams['route'],
               $routeParams,
-              array('query' => array('Search' => '',
-                                     "property[$propertyId][res][]" => $searchTarget,
-                               ),
-                    )
+            array('query' => array('Search' => '',
+                'property[0][property]' => $propertyId,
+                'property[0][type]' => 'res',
+                'property[0][text]' => $searchTarget,
+            ),
+            )
           );
 
         return $searchUrl;
