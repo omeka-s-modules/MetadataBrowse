@@ -212,7 +212,7 @@ class Module extends AbstractModule
                     $controllerLabel = $controllerName;
                 break;
             }
-            $text = $translator->translate(sprintf('See all %s with this value', $controllerLabel));
+            $text = sprintf($translator->translate('See all %s with this value'), $translator->translate($controllerLabel));
             $link = "<a class='metadata-browse-link' href='$searchUrl'>$text</a>";
             $event->setParam('html', "$html $link");
         }
