@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-08-18 15:38-0400\n"
+"POT-Creation-Date: 2017-09-06 13:31-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: Module.php:113 view/metadata-browse/admin/index/index.phtml:29
+#: Module.php:113
 msgid ""
 "If checked, the properties selected below will be linked on the admin side, "
 "overriding all site-specific settings. Each site's own settings will be "
@@ -34,11 +34,11 @@ msgstr ""
 msgid "Select properties to be searchable"
 msgstr ""
 
-#: view/metadata-browse/admin/index/index.phtml:9
-msgid "Metadata Browse · Settings"
+#: view/metadata-browse/admin/index/index.phtml:8
+msgid "Metadata Browse"
 msgstr ""
 
-#: view/metadata-browse/admin/index/index.phtml:18
+#: view/metadata-browse/admin/index/index.phtml:17
 msgid "Choose properties from the sidebar to be searchable"
 msgstr ""
 
@@ -53,8 +53,4 @@ msgstr ""
 
 #: src/Form/ConfigForm.php:17
 msgid "Use global configuration on admin side"
-msgstr ""
-
-#: config/module.config.php:32
-msgid "Metadata Browse"
 msgstr ""

@@ -1,10 +1,11 @@
 <?php
 $this->headScript()->appendFile($this->assetUrl('js/metadata-browse.js', 'MetadataBrowse'));
+$this->headLink()->appendStylesheet($this->assetUrl('css/metadata-browse.css', 'MetadataBrowse'));
 $this->htmlElement('body')->appendAttribute('class', 'sidebar-open');
 ?>
 
 
-<?php echo $this->pageTitle($this->translate('Metadata Browse'), 1, $this->translate('Settings')); ?>
+<?php echo $this->pageTitle($this->translate('Metadata Browse'), 1, $this->translate('Sites'), $this->translate('Settings')); ?>
 <script type='text/javascript'>
     var filteredPropertyIds = <?php echo $filteredPropertyIds; ?>
 </script>
