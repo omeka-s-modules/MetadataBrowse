@@ -9,7 +9,6 @@ use Zend\ServiceManager\ServiceLocatorInterface;
 use Zend\Mvc\Controller\AbstractController;
 use Zend\View\Renderer\PhpRenderer;
 use Zend\EventManager\SharedEventManagerInterface;
-use Zend\EventManager\Event;
 
 class Module extends AbstractModule
 {
@@ -21,7 +20,7 @@ class Module extends AbstractModule
         $settings->delete('metadata_browse_use_globals');
 
         $api = $serviceLocator->get('Omeka\ApiManager');
-        $sites = $api->search('sites', array())->getContent();
+        $sites = $api->search('sites', [])->getContent();
         $siteSettings = $serviceLocator->get('Omeka\Settings\Site');
 
         foreach ($sites as $site) {
@@ -39,7 +38,7 @@ class Module extends AbstractModule
             $settings->set('metadata_browse_properties', $globalProperties);
 
             $api = $serviceLocator->get('Omeka\ApiManager');
-            $sites = $api->search('sites', array())->getContent();
+            $sites = $api->search('sites', [])->getContent();
             $siteSettings = $serviceLocator->get('Omeka\Settings\Site');
 
             foreach ($sites as $site) {
@@ -60,26 +59,26 @@ class Module extends AbstractModule
         $sharedEventManager->attach(
                 'Omeka\Api\Representation\ValueRepresentation',
                 'rep.value.html',
-                array($this, 'repValueHtml')
+                [$this, 'repValueHtml']
                 );
 
-        $triggerIdentifiers = array(
+        $triggerIdentifiers = [
                 'Omeka\Controller\Admin\Item',
                 'Omeka\Controller\Admin\ItemSet',
                 'Omeka\Controller\Site\Item',
                 'Omeka\Controller\Site\ItemSet',
-                );
+                ];
         foreach ($triggerIdentifiers as $identifier) {
             $sharedEventManager->attach(
                 $identifier,
                 'view.show.after',
-                array($this, 'addCSS')
+                [$this, 'addCSS']
             );
 
             $sharedEventManager->attach(
                 $identifier,
                 'view.browse.after',
-                array($this, 'addCSS')
+                [$this, 'addCSS']
             );
         }
     }
@@ -109,11 +108,11 @@ class Module extends AbstractModule
         </script>
         ";
         $formElementManager = $this->getServiceLocator()->get('FormElementManager');
-        $form = $formElementManager->get(ConfigForm::class, array());
+        $form = $formElementManager->get(ConfigForm::class, []);
         $html .= "<p>" . $translator->translate("If checked, the properties selected below will be linked on the admin side, overriding all site-specific settings. Each site's own settings will be reflected on the public side. Otherwise, the admin side will reflect the aggregated settings for all sites; anything selected to be a link in any site will be a link on the admin side.") . "</p>";
         $html .= $renderer->formCollection($form, false);
         $html .= "<div id='properties'><p>".$escape($translator->translate('Choose properties from the sidebar to be searchable on the admin side.')).'</p></div>';
-        $html .= $renderer->partial('metadata-browse/property-template', array('escape' => $escape, 'translator' => $translator));
+        $html .= $renderer->partial('metadata-browse/property-template', ['escape' => $escape, 'translator' => $translator]);
         $renderer->headScript()->appendFile($renderer->assetUrl('js/metadata-browse.js', 'MetadataBrowse'));
         $renderer->headLink()->appendStylesheet($renderer->assetUrl('css/metadata-browse.css', 'MetadataBrowse'));
         $renderer->htmlElement('body')->appendAttribute('class', 'sidebar-open');
@@ -147,7 +146,7 @@ class Module extends AbstractModule
                 $filteredPropertyIds = $globalSettings->get('metadata_browse_properties', []);
             } else {
                 $api = $this->getServiceLocator()->get('Omeka\ApiManager');
-                $sites = $api->search('sites', array())->getContent();
+                $sites = $api->search('sites', [])->getContent();
                 $siteSettings = $this->getServiceLocator()->get('Omeka\Settings\Site');
                 $filteredPropertyIds = [];
                 foreach ($sites as $site) {
@@ -222,12 +221,12 @@ class Module extends AbstractModule
     {
         $searchUrl = $url($routeParams['route'],
               $routeParams,
-              array('query' => array('Search' => '',
+              ['query' => ['Search' => '',
                                      'property[0][property]' => $propertyId,
                                      'property[0][type]' => 'eq',
                                      'property[0][text]' => $searchTarget,
-                           ),
-                      )
+                           ],
+                      ]
           );
 
         return $searchUrl;
@@ -237,12 +236,12 @@ class Module extends AbstractModule
     {
         $searchUrl = $url($routeParams['route'],
               $routeParams,
-                array('query' => array('Search' => '',
+                ['query' => ['Search' => '',
                     'property[0][property]' => $propertyId,
                     'property[0][type]' => 'eq',
                     'property[0][text]' => $searchTarget,
-                ),
-            )
+                ],
+            ]
           );
 
         return $searchUrl;
@@ -252,12 +251,12 @@ class Module extends AbstractModule
     {
         $searchUrl = $url($routeParams['route'],
               $routeParams,
-            array('query' => array('Search' => '',
+            ['query' => ['Search' => '',
                 'property[0][property]' => $propertyId,
                 'property[0][type]' => 'res',
                 'property[0][text]' => $searchTarget,
-            ),
-            )
+            ],
+            ]
           );
 
         return $searchUrl;

@@ -10,16 +10,16 @@ class ConfigForm extends Form
 
     public function init()
     {
-        $this->add(array(
+        $this->add([
             'type' => 'checkbox',
             'name' => 'metadata_browse_use_globals',
-            'options' => array(
+            'options' => [
                         'label' => 'Use global configuration on admin side', // @translate
-                    ),
-            'attributes' => array(
+                    ],
+            'attributes' => [
                         'checked' => $this->globalSettings->get('metadata_browse_use_globals') ? 'checked' : '',
-                    ),
-        ));
+                    ],
+        ]);
     }
 
     public function setGlobalSettings($globalSettings)
