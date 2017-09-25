@@ -40,8 +40,3 @@ a.metadata-browse-link {
     float: left;
     margin: 0 6px 12px 0;
 }
-
-.property .value a {
-    width: calc(100% - 48px);
-    float: right;
-}
