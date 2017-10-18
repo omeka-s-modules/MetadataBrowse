@@ -9,9 +9,27 @@ use Zend\ServiceManager\ServiceLocatorInterface;
 use Zend\Mvc\Controller\AbstractController;
 use Zend\View\Renderer\PhpRenderer;
 use Zend\EventManager\SharedEventManagerInterface;
+use Zend\Mvc\MvcEvent;
+use Omeka\Permissions\Acl;
 
 class Module extends AbstractModule
 {
+
+    public function onBootstrap(MvcEvent $event)
+    {
+        parent::onBootstrap($event);
+
+        $acl = $this->getServiceLocator()->get('Omeka\Acl');
+        $acl->allow(
+            [
+                Acl::ROLE_EDITOR,
+                Acl::ROLE_GLOBAL_ADMIN,
+                Acl::ROLE_SITE_ADMIN,
+            ],
+            ['MetadataBrowse\Controller\Admin\Index']
+            );
+    }
+
     public function uninstall(ServiceLocatorInterface $serviceLocator)
     {
         $logger = $serviceLocator->get('Omeka\Logger');
