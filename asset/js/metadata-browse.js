@@ -66,7 +66,7 @@
         templateClone.find('div.field-term').html(term);
         templateClone.find('input.property-ids').val(id);
         templateClone.find('input.property-ids').prop('disabled', false);
-        $('#properties').append(templateClone);
+        $('#metadata-browse-properties').append(templateClone);
     }
 
 })(jQuery);
