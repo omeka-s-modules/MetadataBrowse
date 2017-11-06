@@ -1,0 +1,66 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# 
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-09-12 10:29-0400\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: Zafado <michal.seweryniak@zafado.pl>, 2017\n"
+"Language-Team: Polish (https://www.transifex.com/omeka/teams/14184/pl/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: pl\n"
+"Plural-Forms: nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && (n%100<12 || n%100>14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && n%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);\n"
+
+#: Module.php:113
+msgid ""
+"If checked, the properties selected below will be linked on the admin side, "
+"overriding all site-specific settings. Each site's own settings will be "
+"reflected on the public side. Otherwise, the admin side will reflect the "
+"aggregated settings for all sites; anything selected to be a link in any "
+"site will be a link on the admin side."
+msgstr ""
+"Jeżeli zaznaczono, właściwości wybrane poniżej będą powiązane po stronie "
+"administratora, nadpisując wszystkie ustawienia specyficzne dla portalu. "
+"Każde z własnych ustawień portalu zostanie odzwierciedlone po stronie "
+"publicznej. W przeciwnym razie, strona administratora odzwierciedli "
+"zgrupowane ustawienia dla wszystkich portali. Wszystko co zostanie "
+"zaznaczone jako odnośnik na dowolnym z portali, będzie również odnośnikiem "
+"po stronie administratora."
+
+#: Module.php:115
+msgid "Choose properties from the sidebar to be searchable on the admin side."
+msgstr ""
+"Wybierz w panelu bocznym właściwości do przeszukiwania po stronie "
+"administratora."
+
+#: Module.php:120
+msgid "Select properties to be searchable"
+msgstr "Wybierz właściwości do przeszukiwania"
+
+#: Module.php:215
+#, php-format
+msgid "See all %s with this value"
+msgstr "Zobacz wszystkie %s z tą wartością"
+
+#: view/metadata-browse/admin/index/index.phtml:8
+msgid "Metadata Browse"
+msgstr "Przeglądanie metadanych"
+
+#: view/metadata-browse/admin/index/index.phtml:17
+msgid "Choose properties from the sidebar to be searchable"
+msgstr "Wybierz w panelu bocznym właściwości do przeszukiwania"
+
+#: view/metadata-browse/property-template.phtml:15
+msgid "Property to be removed"
+msgstr "Właściwości do usunięcia"
+
+#: src/Form/ConfigForm.php:17
+msgid "Use global configuration on admin side"
+msgstr "Użyj globalnych ustawień administratora"
