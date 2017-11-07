@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-09-12 10:29-0400\n"
+"POT-Creation-Date: 2017-11-07 14:36-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: Module.php:113
+#: Module.php:130
 msgid ""
 "If checked, the properties selected below will be linked on the admin side, "
 "overriding all site-specific settings. Each site's own settings will be "
@@ -26,15 +26,15 @@ msgid ""
 "site will be a link on the admin side."
 msgstr ""
 
-#: Module.php:115
+#: Module.php:132
 msgid "Choose properties from the sidebar to be searchable on the admin side."
 msgstr ""
 
-#: Module.php:120
+#: Module.php:137
 msgid "Select properties to be searchable"
 msgstr ""
 
-#: Module.php:215
+#: Module.php:232
 #, php-format
 msgid "See all %s with this value"
 msgstr ""
