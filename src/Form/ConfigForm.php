@@ -17,8 +17,9 @@ class ConfigForm extends Form
                         'label' => 'Use global configuration on admin side', // @translate
                     ],
             'attributes' => [
-                        'checked' => $this->globalSettings->get('metadata_browse_use_globals') ? 'checked' : '',
-                    ],
+                'checked' => $this->globalSettings->get('metadata_browse_use_globals') ? 'checked' : '',
+                'id' => 'metadata-browse-use-globals',
+            ],
         ]);
     }
 
