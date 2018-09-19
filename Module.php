@@ -184,6 +184,7 @@ class Module extends AbstractModule
         }
 
         $url = $this->getServiceLocator()->get('ViewHelperManager')->get('Url');
+        $escape = $this->getServiceLocator()->get('ViewHelperManager')->get('escapeHtml');
         if (in_array($propertyId, $filteredPropertyIds)) {
             $controllerName = $target->resource()->getControllerName();
             $routeParams['controller'] = $controllerName;
@@ -230,6 +231,7 @@ class Module extends AbstractModule
                 break;
             }
             $text = sprintf($translator->translate('See all %s with this value'), $translator->translate($controllerLabel));
+            $searchUrl = $escape($searchUrl);
             $link = "<a class='metadata-browse-link' href='$searchUrl'>$text</a>";
             $event->setParam('html', "$html $link");
         }
