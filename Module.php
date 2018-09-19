@@ -201,7 +201,7 @@ class Module extends AbstractModule
                     $searchUrl = $this->uriSearchUrl($url, $routeParams, $propertyId, $searchTarget);
                     break;
                 case 'literal':
-                    $searchTarget = $html;
+                    $searchTarget = $target->value();
                     $searchUrl = $this->literalSearchUrl($url, $routeParams, $propertyId, $searchTarget);
                     break;
                 default:
@@ -213,7 +213,7 @@ class Module extends AbstractModule
                     } elseif ($uri) {
                         $searchUrl = $this->uriSearchUrl($url, $routeParams, $propertyId, $uri);
                     } else {
-                        $searchTarget = $html;
+                        $searchTarget = $target->value();
                         $searchUrl = $this->literalSearchUrl($url, $routeParams, $propertyId, $searchTarget);
                     }
             }
