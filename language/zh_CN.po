@@ -4,7 +4,7 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # 
 # Translators:
-# iteau <songphan@gmail.com>, 2017
+# Hong Zhang <zhangh@unlv.nevada.edu>, 2018
 # 
 #, fuzzy
 msgid ""
@@ -13,12 +13,12 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-11-07 14:36-0500\n"
 "PO-Revision-Date: 2017-09-12 15:13+0000\n"
-"Last-Translator: iteau <songphan@gmail.com>, 2017\n"
-"Language-Team: Thai (https://www.transifex.com/omeka/teams/14184/th/)\n"
+"Last-Translator: Hong Zhang <zhangh@unlv.nevada.edu>, 2018\n"
+"Language-Team: Chinese (China) (https://www.transifex.com/omeka/teams/14184/zh_CN/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: th\n"
+"Language: zh_CN\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 #: Module.php:130
@@ -29,32 +29,33 @@ msgid ""
 "aggregated settings for all sites; anything selected to be a link in any "
 "site will be a link on the admin side."
 msgstr ""
+"如果点选的话，下面选择的属性将被链接到管理界面上，优先于所有特定于网站的设置。每个网站自己的设置在公共界面上显示。否则的话，管理界面将显示所有网站的集合设置；在任一网站上被选为链接的事物将在管理界面上成为一个链接。"
 
 #: Module.php:132
 msgid "Choose properties from the sidebar to be searchable on the admin side."
-msgstr "เลือกคุณสมบัติจากแถบด้านข้างที่สามารถสืบค้นได้จากส่วนของผู้ดูแลระบบ"
+msgstr "在管理界面上从侧栏选择属性为可搜索。"
 
 #: Module.php:137
 msgid "Select properties to be searchable"
-msgstr "เลือกคุณสมบัติที่สามารถสืบค้นได้"
+msgstr "设定属性为可搜索"
 
 #: Module.php:232
 #, php-format
 msgid "See all %s with this value"
-msgstr "ดู%sทั้งหมดที่มีค่านี้"
+msgstr "查看有此值的所有%s"
 
 #: view/metadata-browse/admin/index/index.phtml:8
 msgid "Metadata Browse"
-msgstr "เลือกดูเมทาดาทา"
+msgstr "元数据浏览"
 
 #: view/metadata-browse/admin/index/index.phtml:17
 msgid "Choose properties from the sidebar to be searchable"
-msgstr "เลือกเมทาดาทาจากแถบด้านข้างที่สามารถสืบค้นได้"
+msgstr "从侧栏选择属性为可搜索"
 
 #: view/metadata-browse/property-template.phtml:15
 msgid "Property to be removed"
-msgstr "คุณสมบัติที่กำลังจะถูกลบออก"
+msgstr "需移除的属性"
 
 #: src/Form/ConfigForm.php:17
 msgid "Use global configuration on admin side"
-msgstr "ใช้การตั้งค่ารวมจากส่วนของผู้ดูแลระบบ"
+msgstr "在管理界面上使用全局配置"

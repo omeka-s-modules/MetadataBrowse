@@ -3,13 +3,16 @@
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # 
+# Translators:
+# Svetaketi Aruni <svetliok26@gmail.com>, 2017
+# 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-09-12 10:29-0400\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"POT-Creation-Date: 2017-11-07 14:36-0500\n"
+"PO-Revision-Date: 2017-09-12 15:13+0000\n"
 "Last-Translator: Svetaketi Aruni <svetliok26@gmail.com>, 2017\n"
 "Language-Team: Bulgarian (Bulgaria) (https://www.transifex.com/omeka/teams/14184/bg_BG/)\n"
 "MIME-Version: 1.0\n"
@@ -18,7 +21,7 @@ msgstr ""
 "Language: bg_BG\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: Module.php:113
+#: Module.php:130
 msgid ""
 "If checked, the properties selected below will be linked on the admin side, "
 "overriding all site-specific settings. Each site's own settings will be "
@@ -27,15 +30,15 @@ msgid ""
 "site will be a link on the admin side."
 msgstr ""
 
-#: Module.php:115
+#: Module.php:132
 msgid "Choose properties from the sidebar to be searchable on the admin side."
 msgstr ""
 
-#: Module.php:120
+#: Module.php:137
 msgid "Select properties to be searchable"
 msgstr ""
 
-#: Module.php:215
+#: Module.php:232
 #, php-format
 msgid "See all %s with this value"
 msgstr "Виж всички %sс тази стойност"

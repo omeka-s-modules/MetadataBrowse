@@ -4,7 +4,7 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # 
 # Translators:
-# iteau <songphan@gmail.com>, 2017
+# Naosuke Okamoto, 2018
 # 
 #, fuzzy
 msgid ""
@@ -13,12 +13,12 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-11-07 14:36-0500\n"
 "PO-Revision-Date: 2017-09-12 15:13+0000\n"
-"Last-Translator: iteau <songphan@gmail.com>, 2017\n"
-"Language-Team: Thai (https://www.transifex.com/omeka/teams/14184/th/)\n"
+"Last-Translator: Naosuke Okamoto, 2018\n"
+"Language-Team: Japanese (https://www.transifex.com/omeka/teams/14184/ja/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: th\n"
+"Language: ja\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 #: Module.php:130
@@ -29,32 +29,34 @@ msgid ""
 "aggregated settings for all sites; anything selected to be a link in any "
 "site will be a link on the admin side."
 msgstr ""
+"チェックをオンにすると、選択したプロパティが管理者側でリンクされ、サイト固有の設定をすべて上書きします。 各サイトの設定は公開側に反映します。 "
+"それ以外の場合、管理者側はすべてのサイトの集約設定を反映します。 どのサイトでもリンクとして選択したものは、管理者側のリンクになります。"
 
 #: Module.php:132
 msgid "Choose properties from the sidebar to be searchable on the admin side."
-msgstr "เลือกคุณสมบัติจากแถบด้านข้างที่สามารถสืบค้นได้จากส่วนของผู้ดูแลระบบ"
+msgstr "管理者側で検索可能なプロパティをサイドバーから選択"
 
 #: Module.php:137
 msgid "Select properties to be searchable"
-msgstr "เลือกคุณสมบัติที่สามารถสืบค้นได้"
+msgstr "検索可能なプロパティを選択"
 
 #: Module.php:232
 #, php-format
 msgid "See all %s with this value"
-msgstr "ดู%sทั้งหมดที่มีค่านี้"
+msgstr "この値の全ての %s を表示"
 
 #: view/metadata-browse/admin/index/index.phtml:8
 msgid "Metadata Browse"
-msgstr "เลือกดูเมทาดาทา"
+msgstr "メタデータを見る（Browse）"
 
 #: view/metadata-browse/admin/index/index.phtml:17
 msgid "Choose properties from the sidebar to be searchable"
-msgstr "เลือกเมทาดาทาจากแถบด้านข้างที่สามารถสืบค้นได้"
+msgstr "検索可能にするプロパティをサイドバーから選択"
 
 #: view/metadata-browse/property-template.phtml:15
 msgid "Property to be removed"
-msgstr "คุณสมบัติที่กำลังจะถูกลบออก"
+msgstr "削除するプロパティ"
 
 #: src/Form/ConfigForm.php:17
 msgid "Use global configuration on admin side"
-msgstr "ใช้การตั้งค่ารวมจากส่วนของผู้ดูแลระบบ"
+msgstr "管理者側でグローバル設定を使用する"

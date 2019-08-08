@@ -4,7 +4,7 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # 
 # Translators:
-# iteau <songphan@gmail.com>, 2017
+# Laurent Thomas, 2019
 # 
 #, fuzzy
 msgid ""
@@ -13,13 +13,13 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-11-07 14:36-0500\n"
 "PO-Revision-Date: 2017-09-12 15:13+0000\n"
-"Last-Translator: iteau <songphan@gmail.com>, 2017\n"
-"Language-Team: Thai (https://www.transifex.com/omeka/teams/14184/th/)\n"
+"Last-Translator: Laurent Thomas, 2019\n"
+"Language-Team: French (https://www.transifex.com/omeka/teams/14184/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: th\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
+"Language: fr\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #: Module.php:130
 msgid ""
@@ -29,32 +29,38 @@ msgid ""
 "aggregated settings for all sites; anything selected to be a link in any "
 "site will be a link on the admin side."
 msgstr ""
+"Activée, cette option permet d'appliquer la configuration ci-dessous à travers l'interface d'administration, contournant toute configuration spécifique aux sites. Chaque configuration individuelle de site restera appliquée sur l'interface publique.\n"
+"Si l'option est désactivée, les configurations des sites seront agrégées : toute propriété sélectionnée pour un site le sera également dans l'interface d'administration."
 
 #: Module.php:132
 msgid "Choose properties from the sidebar to be searchable on the admin side."
-msgstr "เลือกคุณสมบัติจากแถบด้านข้างที่สามารถสืบค้นได้จากส่วนของผู้ดูแลระบบ"
+msgstr ""
+"Choisissez dans le menu latéral les propriétés qui doivent être navigables "
+"dans l'interface d'administration."
 
 #: Module.php:137
 msgid "Select properties to be searchable"
-msgstr "เลือกคุณสมบัติที่สามารถสืบค้นได้"
+msgstr "Sélectionnez les propriétés qui doivent être navigables"
 
 #: Module.php:232
 #, php-format
 msgid "See all %s with this value"
-msgstr "ดู%sทั้งหมดที่มีค่านี้"
+msgstr "Voir tous les %s avec cette valeur"
 
 #: view/metadata-browse/admin/index/index.phtml:8
 msgid "Metadata Browse"
-msgstr "เลือกดูเมทาดาทา"
+msgstr "Parcourir les Métadonnées"
 
 #: view/metadata-browse/admin/index/index.phtml:17
 msgid "Choose properties from the sidebar to be searchable"
-msgstr "เลือกเมทาดาทาจากแถบด้านข้างที่สามารถสืบค้นได้"
+msgstr ""
+"Choisissez dans le menu latéral les propriétés qui doivent être navigables"
 
 #: view/metadata-browse/property-template.phtml:15
 msgid "Property to be removed"
-msgstr "คุณสมบัติที่กำลังจะถูกลบออก"
+msgstr "Propriété à retirer"
 
 #: src/Form/ConfigForm.php:17
 msgid "Use global configuration on admin side"
-msgstr "ใช้การตั้งค่ารวมจากส่วนของผู้ดูแลระบบ"
+msgstr ""
+"Utiliser une configuration spécifique dans l'interface d'administration"

@@ -4,7 +4,8 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # 
 # Translators:
-# iteau <songphan@gmail.com>, 2017
+# Latino Imparato <latino.imparato@gmail.com>, 2018
+# Giorgio Comai <g@giorgiocomai.eu>, 2018
 # 
 #, fuzzy
 msgid ""
@@ -13,13 +14,13 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-11-07 14:36-0500\n"
 "PO-Revision-Date: 2017-09-12 15:13+0000\n"
-"Last-Translator: iteau <songphan@gmail.com>, 2017\n"
-"Language-Team: Thai (https://www.transifex.com/omeka/teams/14184/th/)\n"
+"Last-Translator: Giorgio Comai <g@giorgiocomai.eu>, 2018\n"
+"Language-Team: Italian (https://www.transifex.com/omeka/teams/14184/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: th\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
+"Language: it\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: Module.php:130
 msgid ""
@@ -29,32 +30,40 @@ msgid ""
 "aggregated settings for all sites; anything selected to be a link in any "
 "site will be a link on the admin side."
 msgstr ""
+"Se spuntato, le proprietà selezionate di seguito saranno collegate sul lato "
+"amministratore, sovrascrivendo tutte le impostazioni specifiche del sito. Le"
+" impostazioni di ogni sito saranno riflesse sul lato pubblico. In caso "
+"contrario, il lato amministratore rifletterà le impostazioni aggregate per "
+"tutti i siti; qualsiasi cosa selezionata per essere un link in qualsiasi "
+"sito sarà un link sul lato amministratore."
 
 #: Module.php:132
 msgid "Choose properties from the sidebar to be searchable on the admin side."
-msgstr "เลือกคุณสมบัติจากแถบด้านข้างที่สามารถสืบค้นได้จากส่วนของผู้ดูแลระบบ"
+msgstr ""
+"Scegli le proprietà dalla barra laterale per poterle cercare lato "
+"amministratore."
 
 #: Module.php:137
 msgid "Select properties to be searchable"
-msgstr "เลือกคุณสมบัติที่สามารถสืบค้นได้"
+msgstr "Seleziona le proprietà da ricercare"
 
 #: Module.php:232
 #, php-format
 msgid "See all %s with this value"
-msgstr "ดู%sทั้งหมดที่มีค่านี้"
+msgstr "Vedi tutti i %s con questo valore"
 
 #: view/metadata-browse/admin/index/index.phtml:8
 msgid "Metadata Browse"
-msgstr "เลือกดูเมทาดาทา"
+msgstr "Esplora attraverso i metadata"
 
 #: view/metadata-browse/admin/index/index.phtml:17
 msgid "Choose properties from the sidebar to be searchable"
-msgstr "เลือกเมทาดาทาจากแถบด้านข้างที่สามารถสืบค้นได้"
+msgstr "Scegli le proprietà dalla barra laterale per essere ricercabili"
 
 #: view/metadata-browse/property-template.phtml:15
 msgid "Property to be removed"
-msgstr "คุณสมบัติที่กำลังจะถูกลบออก"
+msgstr "Proprietà da eliminare "
 
 #: src/Form/ConfigForm.php:17
 msgid "Use global configuration on admin side"
-msgstr "ใช้การตั้งค่ารวมจากส่วนของผู้ดูแลระบบ"
+msgstr "Utilizza la configurazione globale su lato amministratore"
