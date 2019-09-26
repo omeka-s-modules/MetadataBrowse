@@ -21,6 +21,18 @@ class ConfigForm extends Form
                 'id' => 'metadata-browse-use-globals',
             ],
         ]);
+
+        $this->add([
+            'type' => 'checkbox',
+            'name' => 'metadata_browse_direct_links',
+            'options' => [
+                'label' => 'Make values links themselves, rather than print link text.'
+            ],
+            'attributes' => [
+                'checked' => $this->globalSettings->get('metadata_browse_direct_links') ? 'checked' : '',
+                'id' => 'metadata_browse_direct_links',
+            ],
+        ]);
     }
 
     public function setGlobalSettings($globalSettings)

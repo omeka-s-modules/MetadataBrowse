@@ -112,6 +112,8 @@ class Module extends AbstractModule
         $globalSettings = $this->getServiceLocator()->get('Omeka\Settings');
         $globalSettings->set('metadata_browse_properties', $propertyIds);
         $globalSettings->set('metadata_browse_use_globals', $params['metadata_browse_use_globals']);
+        $directLinks = $this->getServiceLocator()->get('Omeka\Settings');
+        $directLinks->set('metadata_browse_direct_links', $params['metadata_browse_direct_links']);
     }
 
     public function getConfigForm(PhpRenderer $renderer)
@@ -192,6 +194,7 @@ class Module extends AbstractModule
             $translator = $this->getServiceLocator()->get('MvcTranslator');
             $params = $event->getParams();
             $html = $params['html'];
+            $isLiteral = false;
             switch ($target->type()) {
                 case 'resource':
                     $searchTarget = $target->valueResource()->id();
@@ -204,6 +207,7 @@ class Module extends AbstractModule
                 case 'literal':
                     $searchTarget = $target->value();
                     $searchUrl = $this->literalSearchUrl($url, $routeParams, $propertyId, $searchTarget);
+                    $isLiteral = true;
                     break;
                 default:
                     $resource = $target->valueResource();
@@ -216,6 +220,7 @@ class Module extends AbstractModule
                     } else {
                         $searchTarget = $target->value();
                         $searchUrl = $this->literalSearchUrl($url, $routeParams, $propertyId, $searchTarget);
+                        $isLiteral = true;
                     }
             }
 
@@ -230,10 +235,16 @@ class Module extends AbstractModule
                     $controllerLabel = $controllerName;
                 break;
             }
-            $text = sprintf($translator->translate('See all %s with this value'), $translator->translate($controllerLabel));
-            $searchUrl = $escape($searchUrl);
-            $link = "<a class='metadata-browse-link' href='$searchUrl'>$text</a>";
-            $event->setParam('html', "$html $link");
+            $globalSettings = $this->getServiceLocator()->get('Omeka\Settings');
+            if($globalSettings->get('metadata_browse_direct_links') && $isLiteral == true){
+                $link = "<a class='metadata-browse-direct-link' href='$searchUrl'>" . $html . "</a>";
+                $event->setParam('html', $link);
+            } else {
+                $text = sprintf($translator->translate('See all %s with this value'), $translator->translate($controllerLabel));
+                $searchUrl = $escape($searchUrl);
+                $link = "<a class='metadata-browse-link' href='$searchUrl'>$text</a>";
+                $event->setParam('html', "$html $link");
+            }              
         }
     }
 
