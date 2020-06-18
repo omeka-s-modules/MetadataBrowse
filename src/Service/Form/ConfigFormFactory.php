@@ -3,7 +3,7 @@
 namespace MetadataBrowse\Service\Form;
 
 use MetadataBrowse\Form\ConfigForm;
-use Zend\ServiceManager\Factory\FactoryInterface;
+use Laminas\ServiceManager\Factory\FactoryInterface;
 use Interop\Container\ContainerInterface;
 
 class ConfigFormFactory implements FactoryInterface

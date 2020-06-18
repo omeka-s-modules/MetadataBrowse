@@ -2,7 +2,7 @@
 
 namespace MetadataBrowse\Form;
 
-use Zend\Form\Form;
+use Laminas\Form\Form;
 
 class ConfigForm extends Form
 {

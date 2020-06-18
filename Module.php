@@ -5,11 +5,11 @@ namespace MetadataBrowse;
 use MetadataBrowse\Form\ConfigForm;
 use Omeka\Module\AbstractModule;
 use Omeka\Entity\Value;
-use Zend\ServiceManager\ServiceLocatorInterface;
-use Zend\Mvc\Controller\AbstractController;
-use Zend\View\Renderer\PhpRenderer;
-use Zend\EventManager\SharedEventManagerInterface;
-use Zend\Mvc\MvcEvent;
+use Laminas\ServiceManager\ServiceLocatorInterface;
+use Laminas\Mvc\Controller\AbstractController;
+use Laminas\View\Renderer\PhpRenderer;
+use Laminas\EventManager\SharedEventManagerInterface;
+use Laminas\Mvc\MvcEvent;
 use Omeka\Permissions\Acl;
 
 class Module extends AbstractModule
