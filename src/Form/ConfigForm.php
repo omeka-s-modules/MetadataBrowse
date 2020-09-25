@@ -27,7 +27,7 @@ class ConfigForm extends Form
             'name' => 'metadata_browse_direct_links',
             'options' => [
                 'label' => 'Direct Links', // @translate
-                'info' => 'Instead of printing a separate link for each value, apply the link to the value itself.' // @translate
+                'info' => 'Instead of printing a separate link for each value, apply the link to the value itself.', // @translate
             ],
             'attributes' => [
                 'checked' => $this->globalSettings->get('metadata_browse_direct_links') ? 'checked' : '',

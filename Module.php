@@ -4,7 +4,6 @@ namespace MetadataBrowse;
 
 use MetadataBrowse\Form\ConfigForm;
 use Omeka\Module\AbstractModule;
-use Omeka\Entity\Value;
 use Laminas\ServiceManager\ServiceLocatorInterface;
 use Laminas\Mvc\Controller\AbstractController;
 use Laminas\View\Renderer\PhpRenderer;
@@ -14,7 +13,6 @@ use Omeka\Permissions\Acl;
 
 class Module extends AbstractModule
 {
-
     public function onBootstrap(MvcEvent $event)
     {
         parent::onBootstrap($event);
@@ -69,7 +67,7 @@ class Module extends AbstractModule
 
     public function getConfig()
     {
-        return include __DIR__.'/config/module.config.php';
+        return include __DIR__ . '/config/module.config.php';
     }
 
     public function attachListeners(SharedEventManagerInterface $sharedEventManager)
@@ -131,7 +129,7 @@ class Module extends AbstractModule
         $form = $formElementManager->get(ConfigForm::class, []);
         $html .= "<p>" . $translator->translate("If checked, the properties selected below will be linked on the admin side, overriding all site-specific settings. Each site's own settings will be reflected on the public side. Otherwise, the admin side will reflect the aggregated settings for all sites; anything selected to be a link in any site will be a link on the admin side.") . "</p>";
         $html .= $renderer->formCollection($form, false);
-        $html .= "<div id='metadata-browse-properties'><p>".$escape($translator->translate('Choose properties from the sidebar to be searchable on the admin side.')).'</p></div>';
+        $html .= "<div id='metadata-browse-properties'><p>" . $escape($translator->translate('Choose properties from the sidebar to be searchable on the admin side.')) . '</p></div>';
         $html .= $renderer->partial('metadata-browse/property-template', ['escape' => $escape, 'translator' => $translator]);
         $renderer->headScript()->appendFile($renderer->assetUrl('js/metadata-browse.js', 'MetadataBrowse'));
         $renderer->headLink()->appendStylesheet($renderer->assetUrl('css/metadata-browse.css', 'MetadataBrowse'));
@@ -182,7 +180,7 @@ class Module extends AbstractModule
             $filteredPropertyIds = $siteSettings->get('metadata_browse_properties', []);
             $siteSlug = $routeMatch->getParam('site-slug');
             $routeParams['route'] = 'site';
-            $routeParams['site-slug'] = $siteSlug.'/'.$target->resource()->getControllerName();
+            $routeParams['site-slug'] = $siteSlug . '/' . $target->resource()->getControllerName();
         } else {
             return;
         }
@@ -238,7 +236,7 @@ class Module extends AbstractModule
                 break;
             }
             $globalSettings = $this->getServiceLocator()->get('Omeka\Settings');
-            if($globalSettings->get('metadata_browse_direct_links') && $isLiteral == true){
+            if ($globalSettings->get('metadata_browse_direct_links') && $isLiteral == true) {
                 $link = "<a class='metadata-browse-direct-link' href='$searchUrl'>" . $html . "</a>";
                 $event->setParam('html', $link);
             } else {
@@ -246,7 +244,7 @@ class Module extends AbstractModule
                 $searchUrl = $escape($searchUrl);
                 $link = "<a class='metadata-browse-link' href='$searchUrl'>$text</a>";
                 $event->setParam('html', "$html $link");
-            }              
+            }
         }
     }
 
