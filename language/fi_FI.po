@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-11-07 14:36-0500\n"
+"POT-Creation-Date: 2020-01-10 13:51-0500\n"
 "PO-Revision-Date: 2017-09-12 15:13+0000\n"
 "Last-Translator: Matti Lassila <matti.lassila@gmail.com>, 2018\n"
 "Language-Team: Finnish (Finland) (https://www.transifex.com/omeka/teams/14184/fi_FI/)\n"
@@ -21,7 +21,7 @@ msgstr ""
 "Language: fi_FI\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: Module.php:130
+#: Module.php:132
 msgid ""
 "If checked, the properties selected below will be linked on the admin side, "
 "overriding all site-specific settings. Each site's own settings will be "
@@ -35,15 +35,15 @@ msgstr ""
 "ole valittuna, kaikki ne kentät ovat selattavissa ylläpitonäkymissä jotka "
 "ovat valittu selattavaksi yhdellä tai useammalla sivustolla."
 
-#: Module.php:132
+#: Module.php:134
 msgid "Choose properties from the sidebar to be searchable on the admin side."
 msgstr "Valitse ylläpitonäkymässä selauslinkkeinä näytettävät kentät."
 
-#: Module.php:137
+#: Module.php:139
 msgid "Select properties to be searchable"
 msgstr "Selauslinkkeinä näytettävät kentät"
 
-#: Module.php:232
+#: Module.php:245
 #, php-format
 msgid "See all %s with this value"
 msgstr "Näytä muut %s joilla on sama tieto."
@@ -63,3 +63,13 @@ msgstr "Poistettava kenttä"
 #: src/Form/ConfigForm.php:17
 msgid "Use global configuration on admin side"
 msgstr "Käytä asennuskohtaista asetusta ylläpitonäkymässä."
+
+#: src/Form/ConfigForm.php:29
+msgid "Direct Links"
+msgstr ""
+
+#: src/Form/ConfigForm.php:30
+msgid ""
+"Instead of printing a separate link for each value, apply the link to the "
+"value itself."
+msgstr ""

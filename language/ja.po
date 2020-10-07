@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-11-07 14:36-0500\n"
+"POT-Creation-Date: 2020-01-10 13:51-0500\n"
 "PO-Revision-Date: 2017-09-12 15:13+0000\n"
 "Last-Translator: Naosuke Okamoto, 2018\n"
 "Language-Team: Japanese (https://www.transifex.com/omeka/teams/14184/ja/)\n"
@@ -21,7 +21,7 @@ msgstr ""
 "Language: ja\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: Module.php:130
+#: Module.php:132
 msgid ""
 "If checked, the properties selected below will be linked on the admin side, "
 "overriding all site-specific settings. Each site's own settings will be "
@@ -32,15 +32,15 @@ msgstr ""
 "チェックをオンにすると、選択したプロパティが管理者側でリンクされ、サイト固有の設定をすべて上書きします。 各サイトの設定は公開側に反映します。 "
 "それ以外の場合、管理者側はすべてのサイトの集約設定を反映します。 どのサイトでもリンクとして選択したものは、管理者側のリンクになります。"
 
-#: Module.php:132
+#: Module.php:134
 msgid "Choose properties from the sidebar to be searchable on the admin side."
 msgstr "管理者側で検索可能なプロパティをサイドバーから選択"
 
-#: Module.php:137
+#: Module.php:139
 msgid "Select properties to be searchable"
 msgstr "検索可能なプロパティを選択"
 
-#: Module.php:232
+#: Module.php:245
 #, php-format
 msgid "See all %s with this value"
 msgstr "この値の全ての %s を表示"
@@ -60,3 +60,13 @@ msgstr "削除するプロパティ"
 #: src/Form/ConfigForm.php:17
 msgid "Use global configuration on admin side"
 msgstr "管理者側でグローバル設定を使用する"
+
+#: src/Form/ConfigForm.php:29
+msgid "Direct Links"
+msgstr ""
+
+#: src/Form/ConfigForm.php:30
+msgid ""
+"Instead of printing a separate link for each value, apply the link to the "
+"value itself."
+msgstr ""

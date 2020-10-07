@@ -5,16 +5,16 @@
 # 
 # Translators:
 # Latino Imparato <latino.imparato@gmail.com>, 2018
-# Giorgio Comai <g@giorgiocomai.eu>, 2018
+# Giorgio Comai <g@giorgiocomai.eu>, 2020
 # 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-11-07 14:36-0500\n"
+"POT-Creation-Date: 2020-01-10 13:51-0500\n"
 "PO-Revision-Date: 2017-09-12 15:13+0000\n"
-"Last-Translator: Giorgio Comai <g@giorgiocomai.eu>, 2018\n"
+"Last-Translator: Giorgio Comai <g@giorgiocomai.eu>, 2020\n"
 "Language-Team: Italian (https://www.transifex.com/omeka/teams/14184/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -22,7 +22,7 @@ msgstr ""
 "Language: it\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: Module.php:130
+#: Module.php:132
 msgid ""
 "If checked, the properties selected below will be linked on the admin side, "
 "overriding all site-specific settings. Each site's own settings will be "
@@ -37,17 +37,17 @@ msgstr ""
 "tutti i siti; qualsiasi cosa selezionata per essere un link in qualsiasi "
 "sito sarà un link sul lato amministratore."
 
-#: Module.php:132
+#: Module.php:134
 msgid "Choose properties from the sidebar to be searchable on the admin side."
 msgstr ""
 "Scegli le proprietà dalla barra laterale per poterle cercare lato "
 "amministratore."
 
-#: Module.php:137
+#: Module.php:139
 msgid "Select properties to be searchable"
 msgstr "Seleziona le proprietà da ricercare"
 
-#: Module.php:232
+#: Module.php:245
 #, php-format
 msgid "See all %s with this value"
 msgstr "Vedi tutti i %s con questo valore"
@@ -67,3 +67,15 @@ msgstr "Proprietà da eliminare "
 #: src/Form/ConfigForm.php:17
 msgid "Use global configuration on admin side"
 msgstr "Utilizza la configurazione globale su lato amministratore"
+
+#: src/Form/ConfigForm.php:29
+msgid "Direct Links"
+msgstr "Link diretti"
+
+#: src/Form/ConfigForm.php:30
+msgid ""
+"Instead of printing a separate link for each value, apply the link to the "
+"value itself."
+msgstr ""
+"Invece di mostrare un link separato per ogni valore, applica il link al "
+"valore stesso"

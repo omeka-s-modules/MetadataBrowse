@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-11-07 14:36-0500\n"
+"POT-Creation-Date: 2020-01-10 13:51-0500\n"
 "PO-Revision-Date: 2017-09-12 15:13+0000\n"
 "Last-Translator: Darío Hereñú, 2019\n"
 "Language-Team: Spanish (https://www.transifex.com/omeka/teams/14184/es/)\n"
@@ -23,7 +23,7 @@ msgstr ""
 "Language: es\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: Module.php:130
+#: Module.php:132
 msgid ""
 "If checked, the properties selected below will be linked on the admin side, "
 "overriding all site-specific settings. Each site's own settings will be "
@@ -39,17 +39,17 @@ msgstr ""
 "seleccionado para ser un enlace en cualquier sitio será un enlace desde la "
 "faz del administrador."
 
-#: Module.php:132
+#: Module.php:134
 msgid "Choose properties from the sidebar to be searchable on the admin side."
 msgstr ""
 "Elija las propiedades de la barra lateral para poder realizar búsquedas en "
 "el lado del administrador."
 
-#: Module.php:137
+#: Module.php:139
 msgid "Select properties to be searchable"
 msgstr "Seleccione propiedades ha buscar"
 
-#: Module.php:232
+#: Module.php:245
 #, php-format
 msgid "See all %s with this value"
 msgstr "Ver todo %s con este valor."
@@ -69,3 +69,13 @@ msgstr "Propiedad a ser removida"
 #: src/Form/ConfigForm.php:17
 msgid "Use global configuration on admin side"
 msgstr "Utilice la configuración global en el sitio del administrador"
+
+#: src/Form/ConfigForm.php:29
+msgid "Direct Links"
+msgstr ""
+
+#: src/Form/ConfigForm.php:30
+msgid ""
+"Instead of printing a separate link for each value, apply the link to the "
+"value itself."
+msgstr ""

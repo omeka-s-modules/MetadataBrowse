@@ -4,16 +4,16 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # 
 # Translators:
-# Laurent Thomas, 2019
+# Laurent Thomas, 2020
 # 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-11-07 14:36-0500\n"
+"POT-Creation-Date: 2020-01-10 13:51-0500\n"
 "PO-Revision-Date: 2017-09-12 15:13+0000\n"
-"Last-Translator: Laurent Thomas, 2019\n"
+"Last-Translator: Laurent Thomas, 2020\n"
 "Language-Team: French (https://www.transifex.com/omeka/teams/14184/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -21,7 +21,7 @@ msgstr ""
 "Language: fr\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: Module.php:130
+#: Module.php:132
 msgid ""
 "If checked, the properties selected below will be linked on the admin side, "
 "overriding all site-specific settings. Each site's own settings will be "
@@ -32,17 +32,17 @@ msgstr ""
 "Activée, cette option permet d'appliquer la configuration ci-dessous à travers l'interface d'administration, contournant toute configuration spécifique aux sites. Chaque configuration individuelle de site restera appliquée sur l'interface publique.\n"
 "Si l'option est désactivée, les configurations des sites seront agrégées : toute propriété sélectionnée pour un site le sera également dans l'interface d'administration."
 
-#: Module.php:132
+#: Module.php:134
 msgid "Choose properties from the sidebar to be searchable on the admin side."
 msgstr ""
 "Choisissez dans le menu latéral les propriétés qui doivent être navigables "
 "dans l'interface d'administration."
 
-#: Module.php:137
+#: Module.php:139
 msgid "Select properties to be searchable"
 msgstr "Sélectionnez les propriétés qui doivent être navigables"
 
-#: Module.php:232
+#: Module.php:245
 #, php-format
 msgid "See all %s with this value"
 msgstr "Voir tous les %s avec cette valeur"
@@ -64,3 +64,15 @@ msgstr "Propriété à retirer"
 msgid "Use global configuration on admin side"
 msgstr ""
 "Utiliser une configuration spécifique dans l'interface d'administration"
+
+#: src/Form/ConfigForm.php:29
+msgid "Direct Links"
+msgstr "Liens directs"
+
+#: src/Form/ConfigForm.php:30
+msgid ""
+"Instead of printing a separate link for each value, apply the link to the "
+"value itself."
+msgstr ""
+"Plutôt que d'afficher un lien hypertexte à côté de chaque valeur, cette "
+"option transforme la valeur elle-même en lien."

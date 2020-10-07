@@ -4,7 +4,7 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # 
 # Translators:
-# Svetaketi Aruni <svetliok26@gmail.com>, 2017
+# Blair Kneppers <blair.kneppers@gmail.com>, 2019
 # 
 #, fuzzy
 msgid ""
@@ -13,12 +13,12 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-01-10 13:51-0500\n"
 "PO-Revision-Date: 2017-09-12 15:13+0000\n"
-"Last-Translator: Svetaketi Aruni <svetliok26@gmail.com>, 2017\n"
-"Language-Team: Bulgarian (Bulgaria) (https://www.transifex.com/omeka/teams/14184/bg_BG/)\n"
+"Last-Translator: Blair Kneppers <blair.kneppers@gmail.com>, 2019\n"
+"Language-Team: Dutch (Netherlands) (https://www.transifex.com/omeka/teams/14184/nl_NL/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: bg_BG\n"
+"Language: nl_NL\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: Module.php:132
@@ -29,35 +29,42 @@ msgid ""
 "aggregated settings for all sites; anything selected to be a link in any "
 "site will be a link on the admin side."
 msgstr ""
+"Indien aangevinkt, worden de hieronder geselecteerde eigenschappen aan de "
+"back-end gekoppeld, waarbij alle site-specifieke instellingen worden "
+"overschreven. De site-specifieke instellingen worden zichtbaar in de front-"
+"end. Anders geeft de back-end de verzamelde instellingen voor alle sites "
+"weer; alles dat als link op een site wordt aangegeven, is een link aan de "
+"back-end."
 
 #: Module.php:134
 msgid "Choose properties from the sidebar to be searchable on the admin side."
 msgstr ""
+"Kies in de zijbalk eigenschappen die doorzoekbaar moeten zijn in de back-end"
 
 #: Module.php:139
 msgid "Select properties to be searchable"
-msgstr ""
+msgstr "Selecteer doorzoekbare eigenschappen"
 
 #: Module.php:245
 #, php-format
 msgid "See all %s with this value"
-msgstr "Виж всички %sс тази стойност"
+msgstr "Bekijk alle%s met deze waarde"
 
 #: view/metadata-browse/admin/index/index.phtml:8
 msgid "Metadata Browse"
-msgstr ""
+msgstr "Metadata bekijken"
 
 #: view/metadata-browse/admin/index/index.phtml:17
 msgid "Choose properties from the sidebar to be searchable"
-msgstr ""
+msgstr "Kies in de zijbalk eigenschappen die doorzoekbaar moeten zijn"
 
 #: view/metadata-browse/property-template.phtml:15
 msgid "Property to be removed"
-msgstr ""
+msgstr "Eigenschap wordt verwijderd"
 
 #: src/Form/ConfigForm.php:17
 msgid "Use global configuration on admin side"
-msgstr ""
+msgstr "Gebruik de globale instellingen in de back-end"
 
 #: src/Form/ConfigForm.php:29
 msgid "Direct Links"

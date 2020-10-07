@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-11-07 14:36-0500\n"
+"POT-Creation-Date: 2020-01-10 13:51-0500\n"
 "PO-Revision-Date: 2017-09-12 15:13+0000\n"
 "Last-Translator: iteau <songphan@gmail.com>, 2017\n"
 "Language-Team: Thai (https://www.transifex.com/omeka/teams/14184/th/)\n"
@@ -21,7 +21,7 @@ msgstr ""
 "Language: th\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: Module.php:130
+#: Module.php:132
 msgid ""
 "If checked, the properties selected below will be linked on the admin side, "
 "overriding all site-specific settings. Each site's own settings will be "
@@ -30,15 +30,15 @@ msgid ""
 "site will be a link on the admin side."
 msgstr ""
 
-#: Module.php:132
+#: Module.php:134
 msgid "Choose properties from the sidebar to be searchable on the admin side."
 msgstr "เลือกคุณสมบัติจากแถบด้านข้างที่สามารถสืบค้นได้จากส่วนของผู้ดูแลระบบ"
 
-#: Module.php:137
+#: Module.php:139
 msgid "Select properties to be searchable"
 msgstr "เลือกคุณสมบัติที่สามารถสืบค้นได้"
 
-#: Module.php:232
+#: Module.php:245
 #, php-format
 msgid "See all %s with this value"
 msgstr "ดู%sทั้งหมดที่มีค่านี้"
@@ -58,3 +58,13 @@ msgstr "คุณสมบัติที่กำลังจะถูกลบ
 #: src/Form/ConfigForm.php:17
 msgid "Use global configuration on admin side"
 msgstr "ใช้การตั้งค่ารวมจากส่วนของผู้ดูแลระบบ"
+
+#: src/Form/ConfigForm.php:29
+msgid "Direct Links"
+msgstr ""
+
+#: src/Form/ConfigForm.php:30
+msgid ""
+"Instead of printing a separate link for each value, apply the link to the "
+"value itself."
+msgstr ""

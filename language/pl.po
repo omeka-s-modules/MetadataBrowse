@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-11-07 14:36-0500\n"
+"POT-Creation-Date: 2020-01-10 13:51-0500\n"
 "PO-Revision-Date: 2017-09-12 15:13+0000\n"
 "Last-Translator: Michał Seweryniak <michal.seweryniak@zafado.pl>, 2017\n"
 "Language-Team: Polish (https://www.transifex.com/omeka/teams/14184/pl/)\n"
@@ -21,7 +21,7 @@ msgstr ""
 "Language: pl\n"
 "Plural-Forms: nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && (n%100<12 || n%100>14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && n%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);\n"
 
-#: Module.php:130
+#: Module.php:132
 msgid ""
 "If checked, the properties selected below will be linked on the admin side, "
 "overriding all site-specific settings. Each site's own settings will be "
@@ -37,17 +37,17 @@ msgstr ""
 "zaznaczone jako odnośnik na dowolnym z portali, będzie również odnośnikiem "
 "po stronie administratora."
 
-#: Module.php:132
+#: Module.php:134
 msgid "Choose properties from the sidebar to be searchable on the admin side."
 msgstr ""
 "Wybierz w panelu bocznym właściwości do przeszukiwania po stronie "
 "administratora."
 
-#: Module.php:137
+#: Module.php:139
 msgid "Select properties to be searchable"
 msgstr "Wybierz właściwości do przeszukiwania"
 
-#: Module.php:232
+#: Module.php:245
 #, php-format
 msgid "See all %s with this value"
 msgstr "Zobacz wszystkie %s z tą wartością"
@@ -67,3 +67,13 @@ msgstr "Właściwości do usunięcia"
 #: src/Form/ConfigForm.php:17
 msgid "Use global configuration on admin side"
 msgstr "Użyj globalnych ustawień administratora"
+
+#: src/Form/ConfigForm.php:29
+msgid "Direct Links"
+msgstr ""
+
+#: src/Form/ConfigForm.php:30
+msgid ""
+"Instead of printing a separate link for each value, apply the link to the "
+"value itself."
+msgstr ""

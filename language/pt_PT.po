@@ -4,7 +4,9 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # 
 # Translators:
-# Svetaketi Aruni <svetliok26@gmail.com>, 2017
+# Bruna Santiago <bruna.santiago@campus.fcsh.unl.pt>, 2020
+# Ângela Pité <angelaimp05@gmail.com>, 2020
+# Daniel Alves <daniel_r_alves@hotmail.com>, 2020
 # 
 #, fuzzy
 msgid ""
@@ -13,12 +15,12 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-01-10 13:51-0500\n"
 "PO-Revision-Date: 2017-09-12 15:13+0000\n"
-"Last-Translator: Svetaketi Aruni <svetliok26@gmail.com>, 2017\n"
-"Language-Team: Bulgarian (Bulgaria) (https://www.transifex.com/omeka/teams/14184/bg_BG/)\n"
+"Last-Translator: Daniel Alves <daniel_r_alves@hotmail.com>, 2020\n"
+"Language-Team: Portuguese (Portugal) (https://www.transifex.com/omeka/teams/14184/pt_PT/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: bg_BG\n"
+"Language: pt_PT\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: Module.php:132
@@ -29,42 +31,52 @@ msgid ""
 "aggregated settings for all sites; anything selected to be a link in any "
 "site will be a link on the admin side."
 msgstr ""
+"Se escolhido, as propriedades seleccionadas abaixo serão links no lado do "
+"administrador, anulando todas as definições específicas do site. As "
+"configurações próprias de cada site serão reflectidas no lado público. Caso "
+"contrário, o lado do administrador reflectirá as configurações agregadas "
+"para todos os sites; qualquer coisa seleccionada para ser um link em "
+"qualquer site será um link do lado do administrador."
 
 #: Module.php:134
 msgid "Choose properties from the sidebar to be searchable on the admin side."
 msgstr ""
+"Escolher propriedades da barra lateral para serem pesquisáveis no lado do "
+"administrador."
 
 #: Module.php:139
 msgid "Select properties to be searchable"
-msgstr ""
+msgstr "Seleccionar propriedades para serem pesquisáveis"
 
 #: Module.php:245
 #, php-format
 msgid "See all %s with this value"
-msgstr "Виж всички %sс тази стойност"
+msgstr "Ver todo %s com este valor"
 
 #: view/metadata-browse/admin/index/index.phtml:8
 msgid "Metadata Browse"
-msgstr ""
+msgstr "Explorar Metadados"
 
 #: view/metadata-browse/admin/index/index.phtml:17
 msgid "Choose properties from the sidebar to be searchable"
-msgstr ""
+msgstr "Escolher propriedades da barra lateral para serem pesquisáveis"
 
 #: view/metadata-browse/property-template.phtml:15
 msgid "Property to be removed"
-msgstr ""
+msgstr "Propriedade a ser removida"
 
 #: src/Form/ConfigForm.php:17
 msgid "Use global configuration on admin side"
-msgstr ""
+msgstr "Utilizar configuração global no lado do administrador"
 
 #: src/Form/ConfigForm.php:29
 msgid "Direct Links"
-msgstr ""
+msgstr "Links Directos"
 
 #: src/Form/ConfigForm.php:30
 msgid ""
 "Instead of printing a separate link for each value, apply the link to the "
 "value itself."
 msgstr ""
+"Em vez de imprimir um link separado para cada valor, aplique o link ao "
+"próprio valor."
