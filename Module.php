@@ -81,8 +81,10 @@ class Module extends AbstractModule
         $triggerIdentifiers = [
                 'Omeka\Controller\Admin\Item',
                 'Omeka\Controller\Admin\ItemSet',
+                'Omeka\Controller\Admin\Media',
                 'Omeka\Controller\Site\Item',
                 'Omeka\Controller\Site\ItemSet',
+                'Omeka\Controller\Site\Media',
                 ];
         foreach ($triggerIdentifiers as $identifier) {
             $sharedEventManager->attach(
