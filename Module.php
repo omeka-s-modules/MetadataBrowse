@@ -185,8 +185,9 @@ class Module extends AbstractModule
             return;
         }
 
-        $url = $this->getServiceLocator()->get('ViewHelperManager')->get('Url');
-        $escape = $this->getServiceLocator()->get('ViewHelperManager')->get('escapeHtml');
+        $viewHelperManager = $this->getServiceLocator()->get('ViewHelperManager');
+        $url = $viewHelperManager->get('Url');
+        $hyperlink = $viewHelperManager->get('hyperlink');
         if (in_array($propertyId, $filteredPropertyIds)) {
             $controllerName = $target->resource()->getControllerName();
             $routeParams['controller'] = $controllerName;
@@ -237,12 +238,11 @@ class Module extends AbstractModule
             }
             $globalSettings = $this->getServiceLocator()->get('Omeka\Settings');
             if ($globalSettings->get('metadata_browse_direct_links') && $isLiteral == true) {
-                $link = "<a class='metadata-browse-direct-link' href='$searchUrl'>" . $html . "</a>";
+                $link = $hyperlink->raw($html, $searchUrl, ['class' => 'metadata-browse-direct-link']);
                 $event->setParam('html', $link);
             } else {
                 $text = sprintf($translator->translate('See all %s with this value'), $translator->translate($controllerLabel));
-                $searchUrl = $escape($searchUrl);
-                $link = "<a class='metadata-browse-link' href='$searchUrl'>$text</a>";
+                $link = $hyperlink($text, $searchUrl, ['class' => 'metadata-browse-link']);
                 $event->setParam('html', "$html $link");
             }
         }
