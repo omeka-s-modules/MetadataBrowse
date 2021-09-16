@@ -4,7 +4,7 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # 
 # Translators:
-# Rafael Trindade <drafael@usp.br>, 2020
+# Deidson Rafael <drafael@usp.br>, 2020
 # 
 #, fuzzy
 msgid ""
@@ -13,7 +13,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-01-10 13:51-0500\n"
 "PO-Revision-Date: 2017-09-12 15:13+0000\n"
-"Last-Translator: Rafael Trindade <drafael@usp.br>, 2020\n"
+"Last-Translator: Deidson Rafael <drafael@usp.br>, 2020\n"
 "Language-Team: Portuguese (Brazil) (https://www.transifex.com/omeka/teams/14184/pt_BR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"

@@ -4,8 +4,8 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # 
 # Translators:
-# Josu Aramberri <jaramberri@i2basque.es>, 2018
-# Alfonso Montejo <almontejor@gmail.com>, 2021
+# Angela-Marina Batarelo <angela-marina.batarelo@ericsson.com>, 2021
+# Josip Ilic <josip.ilic@ericsson.com>, 2021
 # 
 #, fuzzy
 msgid ""
@@ -14,13 +14,13 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-01-10 13:51-0500\n"
 "PO-Revision-Date: 2017-09-12 15:13+0000\n"
-"Last-Translator: Alfonso Montejo <almontejor@gmail.com>, 2021\n"
-"Language-Team: Spanish (https://www.transifex.com/omeka/teams/14184/es/)\n"
+"Last-Translator: Josip Ilic <josip.ilic@ericsson.com>, 2021\n"
+"Language-Team: Croatian (https://www.transifex.com/omeka/teams/14184/hr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: es\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: hr\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 
 #: Module.php:132
 msgid ""
@@ -30,55 +30,66 @@ msgid ""
 "aggregated settings for all sites; anything selected to be a link in any "
 "site will be a link on the admin side."
 msgstr ""
-"Si se marca, las propiedades seleccionadas a continuación se enlazarán en la"
-" interfaz de administración, anulando todas las configuraciones específicas "
-"para cada sitio. La configuración de cada sitio se reflejará en su aspecto "
-"público. Por el contrario, la interfaz del administración reflejará todas "
-"las configuraciones acumuladas para todos los sitios; de este modo, "
-"cualquier elemento seleccionado para ser un enlace en cualquier sitio será "
-"un enlace desde la interfaz de administración común."
+"Ako se označi, dolje odabrana svojstva bit će povezana na administratorskoj "
+"strani, nadjačavajući sve postavke specifične za web mjesto. Vlastite "
+"postavke svake web stranice odrazit će se na javnoj strani. U suprotnom će "
+"administratorska strana odražavati agregirane postavke za sve web stranice; "
+"sve što je odabrano da bude veza na bilo kojoj stranici bit će veza na "
+"administratorskoj strani."
 
 #: Module.php:134
 msgid "Choose properties from the sidebar to be searchable on the admin side."
 msgstr ""
-"Elija las propiedades en la barra lateral sobre las que podrán realizarse "
-"búsquedas en la interfaz de administración."
+"Odaberite svojstva na bočnoj traci koja će se moći pretraživati na "
+"administratorskoj strani."
 
 #: Module.php:139
 msgid "Select properties to be searchable"
-msgstr "Seleccione propiedades sobre las que buscar"
+msgstr "Odaberite svojstva koja će se moći pretraživati"
 
 #: Module.php:245
 #, php-format
 msgid "See all %s with this value"
-msgstr "Ver todo %s con este valor"
+msgstr "Pogledajte sve %s s ovom vrijednošću"
 
 #: view/metadata-browse/admin/index/index.phtml:8
 msgid "Metadata Browse"
-msgstr "Explorar metadatos"
+msgstr ""
+"pregledavanje metapodataka\n"
+" \n"
+"\n"
+" \n"
+" \n"
+" \n"
+" \n"
+" "
 
 #: view/metadata-browse/admin/index/index.phtml:17
 msgid "Choose properties from the sidebar to be searchable"
-msgstr ""
-"Elija las propiedades en la barra lateral sobre las que podrán realizarse "
-"búsquedas"
+msgstr "Odaberite svojstva na bočnoj traci koja će se moći pretraživati"
 
 #: view/metadata-browse/property-template.phtml:15
 msgid "Property to be removed"
-msgstr "Propiedad a retirar"
+msgstr "Svojstvo koje će se ukloniti"
 
 #: src/Form/ConfigForm.php:17
 msgid "Use global configuration on admin side"
-msgstr "Usar la configuración global en la interfaz de administración"
+msgstr "Iskoristite globalnu konfiguraciju na administratorskoj strani"
 
 #: src/Form/ConfigForm.php:29
 msgid "Direct Links"
-msgstr "Enlaces directos"
+msgstr "Izravne Poveznice"
 
 #: src/Form/ConfigForm.php:30
 msgid ""
 "Instead of printing a separate link for each value, apply the link to the "
 "value itself."
 msgstr ""
-"En lugar de mostrar un enlace separado de cada valor, introduce el enlace "
-"sobre el propio valor."
+"Umjesto ispisa zasebne veze za svaku vrijednost, primijenite vezu na samu vrijednost.\n"
+" \n"
+"\n"
+" \n"
+" \n"
+" \n"
+" \n"
+" "

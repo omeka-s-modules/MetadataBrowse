@@ -5,6 +5,7 @@
 # 
 # Translators:
 # Svetaketi Aruni <svetliok26@gmail.com>, 2017
+# Tzvetan Tzvetanski <ceibg.org@gmail.com>, 2021
 # 
 #, fuzzy
 msgid ""
@@ -13,7 +14,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-01-10 13:51-0500\n"
 "PO-Revision-Date: 2017-09-12 15:13+0000\n"
-"Last-Translator: Svetaketi Aruni <svetliok26@gmail.com>, 2017\n"
+"Last-Translator: Tzvetan Tzvetanski <ceibg.org@gmail.com>, 2021\n"
 "Language-Team: Bulgarian (Bulgaria) (https://www.transifex.com/omeka/teams/14184/bg_BG/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -29,14 +30,22 @@ msgid ""
 "aggregated settings for all sites; anything selected to be a link in any "
 "site will be a link on the admin side."
 msgstr ""
+"Ако е отметнато, свойствата, избрани по-долу, ще бъдат свързани от страна на"
+" администратора, заменяйки всички специфични за сайта настройки. Собствените"
+" настройки на всеки сайт ще бъдат отразени от публичната страна. В противен "
+"случай администраторската страна ще отразява обобщените настройки за всички "
+"сайтове; всичко, избрано да бъде връзка към който и да е сайт, ще бъде "
+"връзка към администраторската страна."
 
 #: Module.php:134
 msgid "Choose properties from the sidebar to be searchable on the admin side."
 msgstr ""
+"Изберете свойства от страничната лента, за да можете да ги търсите от "
+"администраторската страна."
 
 #: Module.php:139
 msgid "Select properties to be searchable"
-msgstr ""
+msgstr "Изберете свойства, за да можете да ги търсите"
 
 #: Module.php:245
 #, php-format
@@ -45,26 +54,28 @@ msgstr "Виж всички %sс тази стойност"
 
 #: view/metadata-browse/admin/index/index.phtml:8
 msgid "Metadata Browse"
-msgstr ""
+msgstr "Преглед на метаданни"
 
 #: view/metadata-browse/admin/index/index.phtml:17
 msgid "Choose properties from the sidebar to be searchable"
-msgstr ""
+msgstr "Изберете свойства от страничната лента, за да можете да ги търсите"
 
 #: view/metadata-browse/property-template.phtml:15
 msgid "Property to be removed"
-msgstr ""
+msgstr "Реквизит, който трябва да бъде премахнат"
 
 #: src/Form/ConfigForm.php:17
 msgid "Use global configuration on admin side"
-msgstr ""
+msgstr "Използвайте глобална конфигурация от страна на администратора"
 
 #: src/Form/ConfigForm.php:29
 msgid "Direct Links"
-msgstr ""
+msgstr "Директни връзки"
 
 #: src/Form/ConfigForm.php:30
 msgid ""
 "Instead of printing a separate link for each value, apply the link to the "
 "value itself."
 msgstr ""
+"Вместо да отпечатвате отделна връзка за всяка стойност, приложете връзката "
+"към самата стойност."
