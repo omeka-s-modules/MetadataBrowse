@@ -72,12 +72,7 @@ class Module extends AbstractModule
 
     public function attachListeners(SharedEventManagerInterface $sharedEventManager)
     {
-        $sharedEventManager->attach(
-                'Omeka\Api\Representation\ValueRepresentation',
-                'rep.value.html',
-                [$this, 'repValueHtml']
-                );
-
+        $globalSettings = $this->getServiceLocator()->get('Omeka\Settings');
         $triggerIdentifiers = [
                 'Omeka\Controller\Admin\Item',
                 'Omeka\Controller\Admin\ItemSet',
@@ -86,6 +81,17 @@ class Module extends AbstractModule
                 'Omeka\Controller\Site\ItemSet',
                 'Omeka\Controller\Site\Media',
                 ];
+
+        if ($globalSettings->get('metadata_browse_direct_links')) {
+            $sharedEventManager->attach(
+                    'Omeka\Api\Representation\ValueRepresentation',
+                    'rep.value.html',
+                    [$this, 'repValueHtml']
+                    );
+        } else {
+            $separateLink = true;
+        }
+
         foreach ($triggerIdentifiers as $identifier) {
             $sharedEventManager->attach(
                 $identifier,
@@ -98,6 +104,14 @@ class Module extends AbstractModule
                 'view.browse.after',
                 [$this, 'addCSS']
             );
+
+            if ($separateLink) {
+                $sharedEventManager->attach(
+                    $identifier,
+                    'view.show.value',
+                    [$this, 'repValueHtml']
+                );
+            }
         }
     }
 
@@ -150,7 +164,11 @@ class Module extends AbstractModule
 
     public function repValueHtml($event)
     {
-        $target = $event->getTarget();
+        if ($event->getParam('value')) {
+            $target = $event->getParam('value');
+        } else {
+            $target = $event->getTarget();
+        }
         $propertyId = $target->property()->id();
 
         $routeMatch = $this->getServiceLocator()->get('Application')
@@ -196,7 +214,6 @@ class Module extends AbstractModule
 
             $translator = $this->getServiceLocator()->get('MvcTranslator');
             $params = $event->getParams();
-            $html = $params['html'];
             $isLiteral = false;
             switch ($target->type()) {
                 case 'resource':
@@ -240,12 +257,13 @@ class Module extends AbstractModule
             }
             $globalSettings = $this->getServiceLocator()->get('Omeka\Settings');
             if ($globalSettings->get('metadata_browse_direct_links') && $isLiteral == true) {
+                $html = $params['html'];
                 $link = $hyperlink->raw($html, $searchUrl, ['class' => 'metadata-browse-direct-link']);
                 $event->setParam('html', $link);
             } else {
                 $text = sprintf($translator->translate('See all %s with this value'), $translator->translate($controllerLabel));
                 $link = $hyperlink($text, $searchUrl, ['class' => 'metadata-browse-link']);
-                $event->setParam('html', "$html $link");
+                echo $link;
             }
         }
     }
