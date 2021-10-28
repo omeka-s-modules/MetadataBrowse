@@ -82,14 +82,22 @@ class Module extends AbstractModule
                 'Omeka\Controller\Site\Media',
                 ];
 
-        if ($globalSettings->get('metadata_browse_direct_links')) {
+        $directLink = $globalSettings->get('metadata_browse_direct_links');
+
+        if ($directLink) {
             $sharedEventManager->attach(
                     'Omeka\Api\Representation\ValueRepresentation',
                     'rep.value.html',
                     [$this, 'repValueHtml']
                     );
         } else {
-            $separateLink = true;
+            foreach ($triggerIdentifiers as $identifier) {
+                $sharedEventManager->attach(
+                    $identifier,
+                    'view.show.value',
+                    [$this, 'repValueHtml']
+                );
+            }
         }
 
         foreach ($triggerIdentifiers as $identifier) {
@@ -104,14 +112,6 @@ class Module extends AbstractModule
                 'view.browse.after',
                 [$this, 'addCSS']
             );
-
-            if ($separateLink) {
-                $sharedEventManager->attach(
-                    $identifier,
-                    'view.show.value',
-                    [$this, 'repValueHtml']
-                );
-            }
         }
     }
 
