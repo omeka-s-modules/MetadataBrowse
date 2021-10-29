@@ -169,6 +169,12 @@ class Module extends AbstractModule
         } else {
             $target = $event->getTarget();
         }
+
+        $controllerName = $target->resource()->getControllerName();
+        if (!$controllerName) {
+            return;
+        }
+
         $propertyId = $target->property()->id();
 
         $routeMatch = $this->getServiceLocator()->get('Application')
@@ -200,7 +206,7 @@ class Module extends AbstractModule
             $filteredPropertyIds = $siteSettings->get('metadata_browse_properties', []);
             $siteSlug = $routeMatch->getParam('site-slug');
             $routeParams['route'] = 'site';
-            $routeParams['site-slug'] = $siteSlug . '/' . $target->resource()->getControllerName();
+            $routeParams['site-slug'] = $siteSlug . '/' . $controllerName;
         } else {
             return;
         }
@@ -209,7 +215,7 @@ class Module extends AbstractModule
         $url = $viewHelperManager->get('Url');
         $hyperlink = $viewHelperManager->get('hyperlink');
         if (in_array($propertyId, $filteredPropertyIds)) {
-            $controllerName = $target->resource()->getControllerName();
+            $controllerName = $controllerName;
             $routeParams['controller'] = $controllerName;
 
             $translator = $this->getServiceLocator()->get('MvcTranslator');
