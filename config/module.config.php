@@ -33,6 +33,7 @@ return [
                 'route' => 'admin/site/slug/metadata-browse/default',
                 'action' => 'index',
                 'useRouteMatch' => true,
+                'resource' => 'MetadataBrowse\Controller\Admin\Index',
                 'pages' => [
                     [
                         'route' => 'admin/site/slug/metadata-browse/default',
