@@ -79,7 +79,6 @@ class Module extends AbstractModule
                 'Omeka\Controller\Admin\Media',
                 'Omeka\Controller\Site\Item',
                 'Omeka\Controller\Site\ItemSet',
-                'Omeka\Controller\Site\Media',
                 ];
 
         $directLink = $globalSettings->get('metadata_browse_direct_links');
