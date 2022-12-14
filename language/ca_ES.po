@@ -33,15 +33,17 @@ msgstr ""
 #: Module.php:134
 msgid "Choose properties from the sidebar to be searchable on the admin side."
 msgstr ""
+"Selecciona les propietats de l'administració que seran recuperables des de "
+"l'administració."
 
 #: Module.php:139
 msgid "Select properties to be searchable"
-msgstr ""
+msgstr "Selecciona les propietats que seran recuperables"
 
 #: Module.php:245
 #, php-format
 msgid "See all %s with this value"
-msgstr ""
+msgstr "Consulta tots els %s amb aquest valor"
 
 #: view/metadata-browse/admin/index/index.phtml:8
 msgid "Metadata Browse"
@@ -57,7 +59,7 @@ msgstr ""
 
 #: src/Form/ConfigForm.php:17
 msgid "Use global configuration on admin side"
-msgstr ""
+msgstr "Utilitza la configuració global en l'administració"
 
 #: src/Form/ConfigForm.php:29
 msgid "Direct Links"
