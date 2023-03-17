@@ -72,32 +72,19 @@ class Module extends AbstractModule
 
     public function attachListeners(SharedEventManagerInterface $sharedEventManager)
     {
-        $globalSettings = $this->getServiceLocator()->get('Omeka\Settings');
+        $sharedEventManager->attach(
+            'Omeka\Api\Representation\ValueRepresentation',
+            'rep.value.html',
+            [$this, 'repValueHtml']
+        );
+
         $triggerIdentifiers = [
-                'Omeka\Controller\Admin\Item',
-                'Omeka\Controller\Admin\ItemSet',
-                'Omeka\Controller\Admin\Media',
-                'Omeka\Controller\Site\Item',
-                'Omeka\Controller\Site\ItemSet',
-                ];
-
-        $directLink = $globalSettings->get('metadata_browse_direct_links');
-
-        if ($directLink) {
-            $sharedEventManager->attach(
-                    'Omeka\Api\Representation\ValueRepresentation',
-                    'rep.value.html',
-                    [$this, 'repValueHtml']
-                    );
-        } else {
-            foreach ($triggerIdentifiers as $identifier) {
-                $sharedEventManager->attach(
-                    $identifier,
-                    'view.show.value',
-                    [$this, 'repValueHtml']
-                );
-            }
-        }
+            'Omeka\Controller\Admin\Item',
+            'Omeka\Controller\Admin\ItemSet',
+            'Omeka\Controller\Admin\Media',
+            'Omeka\Controller\Site\Item',
+            'Omeka\Controller\Site\ItemSet',
+        ];
 
         foreach ($triggerIdentifiers as $identifier) {
             $sharedEventManager->attach(
@@ -260,15 +247,15 @@ class Module extends AbstractModule
                     $controllerLabel = $controllerName;
                 break;
             }
+            $html = $params['html'];
             $globalSettings = $this->getServiceLocator()->get('Omeka\Settings');
             if ($globalSettings->get('metadata_browse_direct_links') && $isLiteral == true) {
-                $html = $params['html'];
                 $link = $hyperlink->raw($html, $searchUrl, ['class' => 'metadata-browse-direct-link']);
                 $event->setParam('html', $link);
             } else {
                 $text = sprintf($translator->translate('See all %s with this value'), $translator->translate($controllerLabel));
                 $link = $hyperlink($text, $searchUrl, ['class' => 'metadata-browse-link']);
-                echo $link;
+                $event->setParam('html', $html . $link);
             }
         }
     }
